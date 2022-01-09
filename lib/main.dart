@@ -8,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 
 import 'souvenir.dart';
+import 'api/notification_push.dart';
 
 void main() {
   runApp(const MeApp());
@@ -92,6 +93,7 @@ class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   int _counter = 4;
   DateTime today = DateTime.now();
+  bool showContent = true;
 
   List<TextEditingController> controllers = [
     TextEditingController(),
@@ -118,6 +120,7 @@ class _MyHomePageState extends State<MyHomePage>
     });
   }
 
+  NotificationService _notificationService = NotificationService();
   @override
   void initState() {
     super.initState();
@@ -145,7 +148,8 @@ class _MyHomePageState extends State<MyHomePage>
       showDialog(
           context: context,
           builder: (context) {
-            return AlertDialog(content: Text(message));
+            String value = showContent ? message : "Saved";
+            return AlertDialog(content: Text(value));
           });
     });
   }
@@ -498,6 +502,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  NotificationService _notificationService = NotificationService();
   @override
   Widget build(BuildContext context) {
     bool _ShowMemory = false;
@@ -509,8 +514,8 @@ class _SettingsPageState extends State<SettingsPage> {
         body: ListView(
           children: [
             const Padding(
-              padding: const EdgeInsets.fromLTRB(4, 16, 4, 0),
-              child: const Text(
+              padding: EdgeInsets.fromLTRB(4, 16, 4, 0),
+              child: Text(
                 "Memory settings",
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -539,6 +544,29 @@ class _SettingsPageState extends State<SettingsPage> {
                   "Reset Counter",
                   style: TextStyle(fontSize: 18),
                 )),
+            //Notifs
+            /*
+            TextButton(
+                onPressed: () async {
+                  await _notificationService.showNotifications();
+                },
+
+                child: const Text(
+                  "Show Notif",
+                  style: TextStyle(fontSize: 18),
+                )),*/
+            const Padding(
+              padding: EdgeInsets.fromLTRB(4, 16, 4, 0),
+              child: Text(
+                "Application settings",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+            const Divider(),
             CheckboxListTile(
               title: const Text('Animate Slowly'),
               value: timeDilation != 1.0,
@@ -548,6 +576,16 @@ class _SettingsPageState extends State<SettingsPage> {
                 });
               },
               secondary: const Icon(Icons.hourglass_empty),
+            ),
+            CheckboxListTile(
+              title: const Text('Show Memory Content'),
+              value: widget.home.showContent,
+              onChanged: (bool? value) {
+                setState(() {
+                  widget.home.showContent = value! ? true : false;
+                });
+              },
+              secondary: const Icon(Icons.ad_units),
             )
           ],
         ));
@@ -557,6 +595,9 @@ class _SettingsPageState extends State<SettingsPage> {
 class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: const Text("About")));
+    return Scaffold(
+      appBar: AppBar(title: const Text("About")),
+      body: Text("This app is dope"),
+    );
   }
 }
