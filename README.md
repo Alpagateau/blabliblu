@@ -1,16 +1,11 @@
 # flutter_application_1
 
-A new Flutter project.
+A simple flutter project
 
-## Getting Started
+## Why this project ?
 
-This project is a starting point for a Flutter application.
+This project is made to help me learn to code applications using flutter.
 
-A few resources to get you started if this is your first Flutter project:
+## What is this app doing ?
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+A friend of mine ones said than, writing the good things that happend in your day would actualy help to feel better. So I made this little app to do exactly this. You can write anything you want into this. It will be saved into a file on your phone, wich will never be shared to me. Everything is yours. Its like a secret garden. 

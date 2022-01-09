@@ -34,7 +34,7 @@ Future<NotificationWeekAndTime?> pickSchedule(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(
+          title: const Text(
             'I want to be reminded every:',
             textAlign: TextAlign.center,
           ),
@@ -65,13 +65,13 @@ Future<NotificationWeekAndTime?> pickSchedule(
         context: context,
         initialTime: TimeOfDay.fromDateTime(
           now.add(
-            Duration(minutes: 1),
+            const Duration(minutes: 1),
           ),
         ),
         builder: (BuildContext context, Widget? child) {
           return Theme(
             data: ThemeData(
-              colorScheme: ColorScheme.light(
+              colorScheme: const ColorScheme.light(
                 primary: Colors.teal,
               ),
             ),

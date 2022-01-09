@@ -208,6 +208,7 @@ class _MyHomePageState extends State<MyHomePage>
 
       if (schedulNotifs) {
         createReminderNotification(1);
+        //TODO find a way to make it to tomorow
       }
     });
   }
