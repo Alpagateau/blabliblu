@@ -14,3 +14,58 @@ Future<void> createPlantFoodNotification() async {
     ),
   );
 }
+
+Future<void> createWaterReminderNotification(
+    NotificationWeekAndTime notificationSchedule) async {
+  await AwesomeNotifications().createNotification(
+    content: NotificationContent(
+      id: createUniqueId(),
+      channelKey: 'scheduled_channel',
+      title: '${Emojis.wheater_droplet} Add some water to your plant!',
+      body: 'Water your plant regularly to keep it healthy.',
+      notificationLayout: NotificationLayout.Default,
+    ),
+    actionButtons: [
+      NotificationActionButton(
+        key: 'MARK_DONE',
+        label: 'Mark Done',
+      )
+    ],
+    schedule: NotificationCalendar(
+      //weekday: notificationSchedule.dayOfTheWeek,
+      hour: notificationSchedule.timeOfDay.hour,
+      minute: notificationSchedule.timeOfDay.minute,
+      second: 0,
+      millisecond: 0,
+    ),
+  );
+}
+
+Future<void> createReminderNotification(int a) async {
+  await AwesomeNotifications().createNotification(
+    content: NotificationContent(
+      id: createUniqueId(),
+      channelKey: 'scheduled_channel',
+      title: 'How was your day ?',
+      body: 'Tell me what made you smile ${Emojis.smile_face_with_open_mouth}',
+      notificationLayout: NotificationLayout.Default,
+    ),
+    actionButtons: [
+      NotificationActionButton(
+        key: 'MARK_DONE',
+        label: 'Mark Done',
+      )
+    ],
+    schedule: NotificationCalendar(
+      weekday: a,
+      hour: 22,
+      minute: 15,
+      second: 0,
+      millisecond: 0,
+    ),
+  );
+}
+
+Future<void> cancelScheduledNotifications() async {
+  await AwesomeNotifications().cancelAllSchedules();
+}

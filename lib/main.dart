@@ -9,6 +9,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+import 'aboutPageWidget.dart';
+import 'api/utilities.dart';
 import 'souvenir.dart';
 import 'api/notification_push.dart';
 
@@ -22,6 +24,11 @@ void main() {
         defaultColor: Colors.teal,
         importance: NotificationImportance.High,
         channelShowBadge: true,
+      ),
+      NotificationChannel(
+        channelKey: 'scheduled_channel',
+        channelName: 'Scheduled Notifications',
+        defaultColor: Colors.teal,
       ),
     ],
   );
@@ -108,6 +115,7 @@ class _MyHomePageState extends State<MyHomePage>
   int _counter = 4;
   DateTime today = DateTime.now();
   bool showContent = true;
+  bool schedulNotifs = true;
 
   List<TextEditingController> controllers = [
     TextEditingController(),
@@ -199,6 +207,10 @@ class _MyHomePageState extends State<MyHomePage>
             String value = showContent ? message : "Saved";
             return AlertDialog(content: Text(value));
           });
+
+      if (schedulNotifs) {
+        createReminderNotification(1);
+      }
     });
   }
 
@@ -592,13 +604,21 @@ class _SettingsPageState extends State<SettingsPage> {
                   style: TextStyle(fontSize: 18),
                 )),
             //Notifs
-
+/*
             TextButton(
-                onPressed: createPlantFoodNotification,
+                onPressed: () async {
+                  NotificationWeekAndTime? pickedSchedule =
+                      await pickSchedule(context);
+
+                  if (pickedSchedule != null) {
+                    createWaterReminderNotification(pickedSchedule);
+                  }
+                },
                 child: const Text(
                   "Show Notif",
                   style: TextStyle(fontSize: 18),
                 )),
+                */
             const Padding(
               padding: EdgeInsets.fromLTRB(4, 16, 4, 0),
               child: Text(
@@ -630,18 +650,33 @@ class _SettingsPageState extends State<SettingsPage> {
                 });
               },
               secondary: const Icon(Icons.ad_units),
-            )
+            ),
+            const Padding(
+              padding: EdgeInsets.fromLTRB(4, 16, 4, 0),
+              child: Text(
+                "Application settings",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+            const Divider(),
+            CheckboxListTile(
+              title: const Text('Send Notifs'),
+              value: widget.home.schedulNotifs,
+              onChanged: (bool? value) {
+                setState(() {
+                  widget.home.schedulNotifs = value! ? true : false;
+                  if (!widget.home.schedulNotifs) {
+                    cancelScheduledNotifications();
+                  }
+                });
+              },
+              secondary: const Icon(Icons.ad_units),
+            ),
           ],
         ));
-  }
-}
-
-class AboutPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("About")),
-      body: Text("This app is dope"),
-    );
   }
 }
