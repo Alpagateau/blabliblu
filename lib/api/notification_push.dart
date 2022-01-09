@@ -1,86 +1,16 @@
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:timezone/data/latest.dart' as tz;
-import 'package:timezone/timezone.dart' as tz;
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:flutter_application_1/api/utilities.dart';
 
-class NotificationService {
-  //NotificationService a singleton object
-  static final NotificationService _notificationService =
-      NotificationService._internal();
-
-  factory NotificationService() {
-    return _notificationService;
-  }
-
-  NotificationService._internal();
-
-  static const channelId = '123';
-
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-
-  Future<void> init() async {
-    final AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('@mipmap/ic_launcher');
-
-    final IOSInitializationSettings initializationSettingsIOS =
-        IOSInitializationSettings(
-      requestSoundPermission: false,
-      requestBadgePermission: false,
-      requestAlertPermission: false,
-    );
-
-    final InitializationSettings initializationSettings =
-        InitializationSettings(
-            android: initializationSettingsAndroid,
-            iOS: initializationSettingsIOS,
-            macOS: null);
-
-    tz.initializeTimeZones();
-
-    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onSelectNotification: selectNotification);
-  }
-
-  AndroidNotificationDetails _androidNotificationDetails =
-      AndroidNotificationDetails(
-    'channel ID',
-    'channel name',
-    playSound: true,
-    priority: Priority.high,
-    importance: Importance.high,
-    channelDescription: 'channel description',
+Future<void> createPlantFoodNotification() async {
+  await AwesomeNotifications().createNotification(
+    content: NotificationContent(
+      id: createUniqueId(),
+      channelKey: 'basic_channel',
+      title:
+          '${Emojis.money_money_bag + Emojis.plant_cactus} Buy Plant Food!!!',
+      body: 'Florist at 123 Main St. has 2 in stock.',
+      bigPicture: 'asset://assets/notification_map.png',
+      notificationLayout: NotificationLayout.BigPicture,
+    ),
   );
-
-  Future<void> showNotifications() async {
-    await flutterLocalNotificationsPlugin.show(
-      0,
-      "Notification Title",
-      "This is the Notification Body!",
-      NotificationDetails(android: _androidNotificationDetails),
-    );
-  }
-
-  Future<void> scheduleNotifications() async {
-    await flutterLocalNotificationsPlugin.zonedSchedule(
-        0,
-        "Notification Title",
-        "This is the Notification Body!",
-        tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
-        NotificationDetails(android: _androidNotificationDetails),
-        androidAllowWhileIdle: true,
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime);
-  }
-
-  Future<void> cancelNotifications(int id) async {
-    await flutterLocalNotificationsPlugin.cancel(id);
-  }
-
-  Future<void> cancelAllNotifications() async {
-    await flutterLocalNotificationsPlugin.cancelAll();
-  }
-}
-
-void selectNotification(String? payload) async {
-  //handle your logic here
 }

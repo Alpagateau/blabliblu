@@ -2,15 +2,29 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'souvenir.dart';
 import 'api/notification_push.dart';
 
 void main() {
+  AwesomeNotifications().initialize(
+    'resource://drawable/res_app_icon',
+    [
+      NotificationChannel(
+        channelKey: 'basic_channel',
+        channelName: 'Basic Notifications',
+        defaultColor: Colors.teal,
+        importance: NotificationImportance.High,
+        channelShowBadge: true,
+      ),
+    ],
+  );
   runApp(const MeApp());
 }
 
@@ -120,7 +134,6 @@ class _MyHomePageState extends State<MyHomePage>
     });
   }
 
-  NotificationService _notificationService = NotificationService();
   @override
   void initState() {
     super.initState();
@@ -133,6 +146,41 @@ class _MyHomePageState extends State<MyHomePage>
       } else {
         inFile = "{\"Memory\" : [{}";
       }
+
+      AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+        if (!isAllowed) {
+          showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                    title: Text("Allow notifications"),
+                    content:
+                        Text("Our app would like to send you notifications"),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          'Don\'t Allow',
+                          style: TextStyle(color: Colors.grey, fontSize: 18),
+                        ),
+                      ),
+                      TextButton(
+                          onPressed: () => AwesomeNotifications()
+                              .requestPermissionToSendNotifications()
+                              .then((value) => Navigator.pop(context)),
+                          child: Text(
+                            'Allow',
+                            style: TextStyle(
+                              color: Colors.teal,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ))
+                    ],
+                  ));
+        }
+      });
     });
   }
 
@@ -502,7 +550,6 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  NotificationService _notificationService = NotificationService();
   @override
   Widget build(BuildContext context) {
     bool _ShowMemory = false;
@@ -545,16 +592,13 @@ class _SettingsPageState extends State<SettingsPage> {
                   style: TextStyle(fontSize: 18),
                 )),
             //Notifs
-            /*
-            TextButton(
-                onPressed: () async {
-                  await _notificationService.showNotifications();
-                },
 
+            TextButton(
+                onPressed: createPlantFoodNotification,
                 child: const Text(
                   "Show Notif",
                   style: TextStyle(fontSize: 18),
-                )),*/
+                )),
             const Padding(
               padding: EdgeInsets.fromLTRB(4, 16, 4, 0),
               child: Text(
