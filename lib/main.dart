@@ -617,6 +617,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   style: TextStyle(fontSize: 18),
                 )),
                 */
+            //TODO Clean up a bit
             const Padding(
               padding: EdgeInsets.fromLTRB(4, 16, 4, 0),
               child: Text(
