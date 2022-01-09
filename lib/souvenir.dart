@@ -4,8 +4,8 @@ class Souvenir {
   List<String> souvenirs = [];
 
   Souvenir(List<int> d, List<String> s) {
-    this.Date = d;
-    this.souvenirs = s;
+    Date = d;
+    souvenirs = s;
   }
 }
 

@@ -7,10 +7,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'aboutPageWidget.dart';
-import 'api/utilities.dart';
 import 'souvenir.dart';
 import 'api/notification_push.dart';
 
@@ -160,15 +158,15 @@ class _MyHomePageState extends State<MyHomePage>
           showDialog(
               context: context,
               builder: (context) => AlertDialog(
-                    title: Text("Allow notifications"),
-                    content:
-                        Text("Our app would like to send you notifications"),
+                    title: const Text("Allow notifications"),
+                    content: const Text(
+                        "Our app would like to send you notifications"),
                     actions: [
                       TextButton(
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: Text(
+                        child: const Text(
                           'Don\'t Allow',
                           style: TextStyle(color: Colors.grey, fontSize: 18),
                         ),
@@ -177,7 +175,7 @@ class _MyHomePageState extends State<MyHomePage>
                           onPressed: () => AwesomeNotifications()
                               .requestPermissionToSendNotifications()
                               .then((value) => Navigator.pop(context)),
-                          child: Text(
+                          child: const Text(
                             'Allow',
                             style: TextStyle(
                               color: Colors.teal,
