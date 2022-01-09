@@ -662,6 +662,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
             const Divider(),
+            const Divider(),
             CheckboxListTile(
               title: const Text('Send Notifs'),
               value: widget.home.schedulNotifs,
