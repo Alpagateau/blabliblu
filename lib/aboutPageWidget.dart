@@ -10,7 +10,13 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("About")),
-      body: const Text("This app is dope"),
+      body: const Text(
+        "This app is dope",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 21,
+        ),
+      ),
     );
   }
 }

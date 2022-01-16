@@ -205,11 +205,6 @@ class _MyHomePageState extends State<MyHomePage>
             String value = showContent ? message : "Saved";
             return AlertDialog(content: Text(value));
           });
-
-      if (schedulNotifs) {
-        createReminderNotification(1);
-        //TODO find a way to make it to tomorow
-      }
     });
   }
 
@@ -672,6 +667,14 @@ class _SettingsPageState extends State<SettingsPage> {
                   widget.home.schedulNotifs = value! ? true : false;
                   if (!widget.home.schedulNotifs) {
                     cancelScheduledNotifications();
+                  } else {
+                    createReminderNotification(1);
+                    createReminderNotification(2);
+                    createReminderNotification(3);
+                    createReminderNotification(4);
+                    createReminderNotification(5);
+                    createReminderNotification(6);
+                    createReminderNotification(7);
                   }
                 });
               },
