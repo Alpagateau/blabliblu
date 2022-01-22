@@ -3,7 +3,7 @@ import 'dart:io';
 import 'dart:convert';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:flutter/foundation.dart';
+//import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
@@ -195,7 +195,6 @@ class _MyHomePageState extends State<MyHomePage>
   void showWhatIsInside() {
     widget.storage.readCounter().then((String message) {
       if (message == "{\"Memory\" : [{}") {
-        print("It is supposed to delet");
         inFile = "{\"Memory\" : [{}";
       }
       saveDay();
@@ -208,6 +207,9 @@ class _MyHomePageState extends State<MyHomePage>
     });
   }
 
+//TODO SAVE METHOD
+  ///Charge today when already done
+  ///and save it
   void saveDay() {
     String jsonResult = inFile;
 
@@ -293,7 +295,7 @@ class _MyHomePageState extends State<MyHomePage>
               title: const Text("About"),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AboutPage()));
+                    MaterialPageRoute(builder: (context) => const AboutPage()));
               },
             ),
             ListTile(
@@ -558,7 +560,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    bool _ShowMemory = false;
+    bool showMemory = false;
 
     return Scaffold(
         appBar: AppBar(
@@ -613,7 +615,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   style: TextStyle(fontSize: 18),
                 )),
                 */
-            
+
             const Padding(
               padding: EdgeInsets.fromLTRB(4, 16, 4, 0),
               child: Text(
