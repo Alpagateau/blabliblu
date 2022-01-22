@@ -41,7 +41,7 @@ Future<void> createWaterReminderNotification(
   );
 }
 
-Future<void> createReminderNotification(int a) async {
+Future<void> createReminderNotification(int d, int? h, int? m) async {
   await AwesomeNotifications().createNotification(
     content: NotificationContent(
       id: createUniqueId(),
@@ -57,9 +57,9 @@ Future<void> createReminderNotification(int a) async {
       )
     ],
     schedule: NotificationCalendar(
-      weekday: a,
-      hour: 22,
-      minute: 15,
+      weekday: d,
+      hour: h,
+      minute: m,
       second: 0,
       millisecond: 0,
       repeats: true,

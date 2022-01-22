@@ -113,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage>
   int _counter = 4;
   DateTime today = DateTime.now();
   bool showContent = true;
-  bool schedulNotifs = true;
+  bool schedulNotifs = false;
 
   List<TextEditingController> controllers = [
     TextEditingController(),
@@ -668,13 +668,17 @@ class _SettingsPageState extends State<SettingsPage> {
                   if (!widget.home.schedulNotifs) {
                     cancelScheduledNotifications();
                   } else {
-                    createReminderNotification(1);
-                    createReminderNotification(2);
-                    createReminderNotification(3);
-                    createReminderNotification(4);
-                    createReminderNotification(5);
-                    createReminderNotification(6);
-                    createReminderNotification(7);
+                    showTimePicker(
+                            context: context, initialTime: TimeOfDay.now())
+                        .then((TimeOfDay? value) {
+                      createReminderNotification(1, value!.hour, value.minute);
+                      createReminderNotification(2, value.hour, value.minute);
+                      createReminderNotification(3, value.hour, value.minute);
+                      createReminderNotification(4, value.hour, value.minute);
+                      createReminderNotification(5, value.hour, value.minute);
+                      createReminderNotification(6, value.hour, value.minute);
+                      createReminderNotification(7, value.hour, value.minute);
+                    });
                   }
                 });
               },
