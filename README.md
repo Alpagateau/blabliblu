@@ -15,3 +15,8 @@ Every day, you'll receive a notification to remind you to write down the things 
 sent. (you can disable them in the settings). When you enter information in the fields provided, the content is saved in a file of your 
 own on your phone. Nothing is sent to anyone. Everything happens on your phone, in private. When you open the Diary, the file is opened
  and displayed in a convenient way. 
+
+ ## Some sources
+ https://www.youtube.com/watch?v=hZ4aT_RVHCs
+ https://happyproject.in/three-good-things/
+ https://www.youtube.com/watch?v=ZOGAp9dw8Ac
