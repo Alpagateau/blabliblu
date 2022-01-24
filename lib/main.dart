@@ -7,6 +7,7 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'aboutPageWidget.dart';
 import 'souvenir.dart';
@@ -112,6 +113,7 @@ class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   int _counter = 4;
   DateTime today = DateTime.now();
+
   bool showContent = true;
   bool schedulNotifs = false;
 
@@ -152,6 +154,11 @@ class _MyHomePageState extends State<MyHomePage>
       } else {
         inFile = "{\"Memory\" : [{}";
       }
+
+      SharedPreferences.getInstance().then((value) {
+        schedulNotifs = value.getBool("notifs")!;
+        //TODO add the show content bool here
+      });
 
       AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
         if (!isAllowed) {
@@ -219,7 +226,7 @@ class _MyHomePageState extends State<MyHomePage>
     final a = Memoir.fromJson(parsedJson);
     if (a.memo.last['Date'].toString() ==
         [today.day, today.month, today.year].toString()) {
-      print("Today alreday done");
+      //print("Today alreday done");
     } else {
       jsonResult += ",{";
       jsonResult +=
@@ -479,7 +486,6 @@ class HistoryPageState extends State<HistoryPage> {
 
                   final b = Memoir.fromJson(parsedJson);
 
-                  int lenght = b.memo.length - 1;
                   final souv = b.memo.sublist(1);
 
                   //print("Heres memory == >" + souv[0].toString());
@@ -560,8 +566,6 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    bool showMemory = false;
-
     return Scaffold(
         appBar: AppBar(
           title: const Text("History"),
@@ -600,22 +604,6 @@ class _SettingsPageState extends State<SettingsPage> {
                   style: TextStyle(fontSize: 18),
                 )),
             //Notifs
-/*
-            TextButton(
-                onPressed: () async {
-                  NotificationWeekAndTime? pickedSchedule =
-                      await pickSchedule(context);
-
-                  if (pickedSchedule != null) {
-                    createWaterReminderNotification(pickedSchedule);
-                  }
-                },
-                child: const Text(
-                  "Show Notif",
-                  style: TextStyle(fontSize: 18),
-                )),
-                */
-
             const Padding(
               padding: EdgeInsets.fromLTRB(4, 16, 4, 0),
               child: Text(
@@ -667,6 +655,11 @@ class _SettingsPageState extends State<SettingsPage> {
               onChanged: (bool? value) {
                 setState(() {
                   widget.home.schedulNotifs = value! ? true : false;
+
+                  SharedPreferences.getInstance().then((value) {
+                    value.setBool("notifs", widget.home.schedulNotifs);
+                  });
+
                   if (!widget.home.schedulNotifs) {
                     cancelScheduledNotifications();
                   } else {

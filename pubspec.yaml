@@ -38,6 +38,7 @@ dependencies:
   flutter_local_notifications: ^9.2.0
   awesome_notifications: ^0.0.6+10
   url_launcher: ^6.0.18
+  shared_preferences: ^2.0.12
 
 dev_dependencies:
   flutter_test:
