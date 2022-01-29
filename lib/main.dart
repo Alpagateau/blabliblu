@@ -218,6 +218,7 @@ class _MyHomePageState extends State<MyHomePage>
   ///Charge today when already done
   ///and save it
   ///for the moment not working at all
+  ///Just made the test appear in the context when the same length
   void saveDay() {
     String jsonResult = inFile;
 
