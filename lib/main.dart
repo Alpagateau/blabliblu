@@ -157,7 +157,7 @@ class _MyHomePageState extends State<MyHomePage>
 
       SharedPreferences.getInstance().then((value) {
         schedulNotifs = value.getBool("notifs")!;
-        //TODO add the show content bool here
+        showContent = value.getBool("contentS")!;
       });
 
       AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
@@ -217,6 +217,7 @@ class _MyHomePageState extends State<MyHomePage>
 //TODO SAVE METHOD
   ///Charge today when already done
   ///and save it
+  ///for the moment not working at all
   void saveDay() {
     String jsonResult = inFile;
 
@@ -224,9 +225,27 @@ class _MyHomePageState extends State<MyHomePage>
     final parsedJson = jsonDecode(jsond);
 
     final a = Memoir.fromJson(parsedJson);
+    print(a.memo.last['Date'].toString());
+    print([today.day, today.month, today.year].toString());
     if (a.memo.last['Date'].toString() ==
         [today.day, today.month, today.year].toString()) {
       //print("Today alreday done");
+      final tt = a.memo.last["souvenirs"];
+
+      if (tt.length != controllers.length) {
+        print("Has to change");
+        if (tt.length > controllers.length) {
+          for (int i = 0; i < 2; i++) {
+            controllers.add(TextEditingController());
+          }
+        }
+      } else {
+        print(a.memo.last["souvenirs"].length);
+        print(controllers.length);
+        for (int i = 0; i < controllers.length; i++) {
+          controllers[i].text = tt[i];
+        }
+      }
     } else {
       jsonResult += ",{";
       jsonResult +=
@@ -239,18 +258,6 @@ class _MyHomePageState extends State<MyHomePage>
       }
       jsonResult += "]}";
     }
-/*
-    jsonResult += ",{";
-    jsonResult +=
-        "\"Date\" : [${today.day},${today.month},${today.year}],\"souvenirs\":[";
-    for (int i = 0; i < controllers.length; i++) {
-      jsonResult += "\"" + controllers[i].text + "\"";
-      if (i < controllers.length - 1) {
-        jsonResult += ",";
-      }
-    }
-    jsonResult += "]}";
-*/
     widget.storage.writeCounter(jsonResult);
   }
 
@@ -477,7 +484,7 @@ class HistoryPageState extends State<HistoryPage> {
               future: widget.storage
                   .readCounter(), // a previously-obtained Future<String> or null
               builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                List<Widget> days;
+                //List<Widget> days;
                 List<Widget> children;
                 if (snapshot.hasData) {
                   final String jsond = (snapshot.data as String) + "]}";
@@ -632,6 +639,9 @@ class _SettingsPageState extends State<SettingsPage> {
               onChanged: (bool? value) {
                 setState(() {
                   widget.home.showContent = value! ? true : false;
+                  SharedPreferences.getInstance().then((value) {
+                    value.setBool("contentS", widget.home.showContent);
+                  });
                 });
               },
               secondary: const Icon(Icons.ad_units),
