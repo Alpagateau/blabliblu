@@ -237,7 +237,6 @@ class _MyHomePageState extends State<MyHomePage>
         if (tt.length > controllers.length) {
           for (int i = 0; i < 2; i++) {
             controllers.add(TextEditingController());
-            //wait
           }
         }
       } else {
