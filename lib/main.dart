@@ -229,7 +229,6 @@ class _MyHomePageState extends State<MyHomePage>
     print([today.day, today.month, today.year].toString());
     if (a.memo.last['Date'].toString() ==
         [today.day, today.month, today.year].toString()) {
-      //print("Today alreday done");
       final tt = a.memo.last["souvenirs"];
 
       if (tt.length != controllers.length) {
