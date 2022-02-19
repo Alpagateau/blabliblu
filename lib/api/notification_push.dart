@@ -25,12 +25,6 @@ Future<void> createWaterReminderNotification(
       body: 'Water your plant regularly to keep it healthy.',
       notificationLayout: NotificationLayout.Default,
     ),
-    actionButtons: [
-      NotificationActionButton(
-        key: 'MARK_DONE',
-        label: 'Mark Done',
-      )
-    ],
     schedule: NotificationCalendar(
       //weekday: notificationSchedule.dayOfTheWeek,
       hour: notificationSchedule.timeOfDay.hour,
@@ -50,12 +44,6 @@ Future<void> createReminderNotification(int d, int? h, int? m) async {
       body: 'Tell me what made you smile ${Emojis.smile_face_with_open_mouth}',
       notificationLayout: NotificationLayout.Default,
     ),
-    actionButtons: [
-      NotificationActionButton(
-        key: 'MARK_DONE',
-        label: 'Mark Done',
-      )
-    ],
     schedule: NotificationCalendar(
       weekday: d,
       hour: h,
