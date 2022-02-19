@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:awesome_notifications/awesome_notifications.dart';
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,6 +13,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'aboutPageWidget.dart';
 import 'souvenir.dart';
 import 'api/notification_push.dart';
+
+//TODO maybe add some animations
+//TODO add a real icon
 
 void main() {
   AwesomeNotifications().initialize(
@@ -148,51 +152,82 @@ class _MyHomePageState extends State<MyHomePage>
 
     controller = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 500));
-    widget.storage.readCounter().then((String message) {
-      if (message != "") {
-        inFile = message;
-      } else {
-        inFile = "{\"Memory\" : [{}";
-      }
 
-      SharedPreferences.getInstance().then((value) {
-        schedulNotifs = value.getBool("notifs")!;
-        showContent = value.getBool("contentS")!;
-      });
+    asyncLoader();
+  }
 
-      AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
-        if (!isAllowed) {
-          showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                    title: const Text("Allow notifications"),
-                    content: const Text(
-                        "Our app would like to send you notifications"),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text(
-                          'Don\'t Allow',
-                          style: TextStyle(color: Colors.grey, fontSize: 18),
-                        ),
-                      ),
-                      TextButton(
-                          onPressed: () => AwesomeNotifications()
-                              .requestPermissionToSendNotifications()
-                              .then((value) => Navigator.pop(context)),
-                          child: const Text(
-                            'Allow',
-                            style: TextStyle(
-                              color: Colors.teal,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ))
-                    ],
-                  ));
+  void asyncLoader() async {
+    await Future.delayed(const Duration(milliseconds: 2), () {});
+    setState(() {
+      widget.storage.readCounter().then((String message) {
+        if (message != "") {
+          inFile = message;
+        } else {
+          inFile = "{\"Memory\" : [{}";
         }
+
+        final String jsond = inFile + "]}";
+        final parsedJson = jsonDecode(jsond);
+        final a = Memoir.fromJson(parsedJson);
+
+        if (a.memo.last['Date'].toString() ==
+            [today.day, today.month, today.year].toString()) {
+          _counter = a.memo.last['souvenirs'].length + 1;
+          print("the counter value at init is  : ");
+          print(_counter);
+
+          controllers = [];
+          for (int i = 0; i < _counter - 1; i++) {
+            controllers.add(TextEditingController());
+            controllers.last.text = a.memo.last['souvenirs'][i];
+          }
+        }
+
+        SharedPreferences.getInstance().then((value) {
+          schedulNotifs = value.getBool("notifs")!;
+          showContent = value.getBool("contentS")!;
+        });
+        AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+          if (!isAllowed) {
+            showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                      title: const Text("Allow notifications"),
+                      content: const Text(
+                          "Our app would like to send you notifications"),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            createReminderNotification(1, 18, 30);
+                            createReminderNotification(2, 18, 30);
+                            createReminderNotification(3, 18, 30);
+                            createReminderNotification(4, 18, 30);
+                            createReminderNotification(5, 18, 30);
+                            createReminderNotification(6, 18, 30);
+                            createReminderNotification(7, 18, 30);
+                          },
+                          child: const Text(
+                            'Don\'t Allow',
+                            style: TextStyle(color: Colors.grey, fontSize: 18),
+                          ),
+                        ),
+                        TextButton(
+                            onPressed: () => AwesomeNotifications()
+                                .requestPermissionToSendNotifications()
+                                .then((value) => Navigator.pop(context)),
+                            child: const Text(
+                              'Allow',
+                              style: TextStyle(
+                                color: Colors.teal,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ))
+                      ],
+                    ));
+          }
+        });
       });
     });
   }
@@ -226,16 +261,15 @@ class _MyHomePageState extends State<MyHomePage>
     final parsedJson = jsonDecode(jsond);
 
     final a = Memoir.fromJson(parsedJson);
-    print(a.memo.last['Date'].toString());
-    print([today.day, today.month, today.year].toString());
     if (a.memo.last['Date'].toString() ==
         [today.day, today.month, today.year].toString()) {
-      final tt = a.memo.last["souvenirs"];
+      final lastSavedSouv = a.memo.last["souvenirs"];
 
-      if (tt.length != controllers.length) {
+      if (lastSavedSouv.length != controllers.length) {
         print("Has to change");
-        if (tt.length > controllers.length) {
-          for (int i = 0; i < 2; i++) {
+        if (lastSavedSouv.length > controllers.length) {
+          final l = lastSavedSouv.length - controllers.length;
+          for (int i = 0; i < l; i++) {
             controllers.add(TextEditingController());
           }
         }
@@ -243,7 +277,7 @@ class _MyHomePageState extends State<MyHomePage>
         print(a.memo.last["souvenirs"].length);
         print(controllers.length);
         for (int i = 0; i < controllers.length; i++) {
-          controllers[i].text = tt[i];
+          controllers[i].text = lastSavedSouv[i];
         }
       }
     } else {
@@ -423,6 +457,7 @@ class _MyHomePageState extends State<MyHomePage>
   }
 }
 
+// ignore: must_be_immutable
 class HistoryPage extends StatefulWidget {
   HistoryPage({Key? key, required this.storage, required this.fileStor})
       : super(key: key);
@@ -487,24 +522,24 @@ class HistoryPageState extends State<HistoryPage> {
                 //List<Widget> days;
                 List<Widget> children;
                 if (snapshot.hasData) {
-                  final String jsond = (snapshot.data as String) + "]}";
-                  //print("1st = >" + jsond);
+                  final String jsond = widget.fileStor + "]}";
+
                   final parsedJson = jsonDecode(jsond);
 
                   final b = Memoir.fromJson(parsedJson);
 
                   final souv = b.memo.sublist(1);
 
-                  //print("Heres memory == >" + souv[0].toString());
-
-                  List<Widget> a = [];
+                  List<Widget> finalList = [];
                   for (int i = 0; i < souv.length; i++) {
-                    a.add(widget.buildSouvenirCard(
+                    finalList.add(widget.buildSouvenirCard(
                         souv[i]['Date'][0],
                         souv[i]['Date'][1],
                         souv[i]['Date'][2],
                         List<String>.from(souv[i]['souvenirs'])));
                   }
+                  finalList.add(const Text(
+                      "Nothing more to see here, try to write every day to see the lenght of this list becoming longer"));
                   children = <Widget>[
                     const Icon(
                       Icons.check_circle_outline,
@@ -515,7 +550,7 @@ class HistoryPageState extends State<HistoryPage> {
                       padding: const EdgeInsets.only(top: 16),
                       child: Center(
                           child: ListBody(
-                        children: a,
+                        children: finalList,
                       )),
                     ),
                   ];
