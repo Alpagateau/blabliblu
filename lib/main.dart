@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:awesome_notifications/awesome_notifications.dart';
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/substringFinder.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
@@ -249,35 +250,28 @@ class _MyHomePageState extends State<MyHomePage>
     });
   }
 
-//TODO SAVE METHOD
-// actually, it founds out if the day is in memory and loads up the values
-// needs to modify the javascript to put the new values, regardless of the lenghts
   void saveDay() {
     String jsonResult = inFile;
-
-    final String jsond = jsonResult + "]}";
+    String jsond = jsonResult + "]}";
     final parsedJson = jsonDecode(jsond);
 
     final a = Memoir.fromJson(parsedJson);
     if (a.memo.last['Date'].toString() ==
         [today.day, today.month, today.year].toString()) {
-      final lastSavedSouv = a.memo.last["souvenirs"];
-
-      if (lastSavedSouv.length != controllers.length) {
-        print("Has to change");
-        if (lastSavedSouv.length > controllers.length) {
-          final l = lastSavedSouv.length - controllers.length;
-          for (int i = 0; i < l; i++) {
-            controllers.add(TextEditingController());
-          }
-        }
-      } else {
-        print(a.memo.last["souvenirs"].length);
-        print(controllers.length);
-        for (int i = 0; i < controllers.length; i++) {
-          controllers[i].text = lastSavedSouv[i];
+      final indexes = findSubs(inFile, "},{");
+      inFile = inFile.substring(0, indexes.last + 1);
+      jsond = inFile + "]}";
+//now we do some noraml shit
+      jsonResult += ",{";
+      jsonResult +=
+          "\"Date\" : [${today.day},${today.month},${today.year}],\"souvenirs\":[";
+      for (int i = 0; i < controllers.length; i++) {
+        jsonResult += "\"" + controllers[i].text + "\"";
+        if (i < controllers.length - 1) {
+          jsonResult += ",";
         }
       }
+      jsonResult += "]}";
     } else {
       jsonResult += ",{";
       jsonResult +=
@@ -294,11 +288,6 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   late AnimationController controller;
-
-  final Future<String> _wainting = Future<String>.delayed(
-    const Duration(seconds: 2),
-    () => 'Data Loaded',
-  );
 
   @override
   Widget build(BuildContext context) {
