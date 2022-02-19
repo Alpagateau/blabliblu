@@ -250,10 +250,8 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
 //TODO SAVE METHOD
-  ///Charge today when already done
-  ///and save it
-  ///for the moment not working at all
-  ///Just made the test appear in the context when the same length
+// actually, it founds out if the day is in memory and loads up the values
+// needs to modify the javascript to put the new values, regardless of the lenghts
   void saveDay() {
     String jsonResult = inFile;
 
@@ -297,108 +295,154 @@ class _MyHomePageState extends State<MyHomePage>
 
   late AnimationController controller;
 
+  final Future<String> _wainting = Future<String>.delayed(
+    const Duration(seconds: 2),
+    () => 'Data Loaded',
+  );
+
   @override
   Widget build(BuildContext context) {
+    final Future<String> _waiting = Future<String>.delayed(
+      const Duration(milliseconds: 3),
+      () => 'Data Loaded',
+    );
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(
-              decoration: const BoxDecoration(
-                color: Colors.green,
+    return FutureBuilder<String>(
+      future: _waiting, // a previously-obtained Future<String> or null
+      builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+        List<Widget> children;
+        if (snapshot.hasData) {
+          children = [
+            Center(
+              // Center is a layout widget. It takes a single child and positions it
+              // in the middle of the parent.
+              child: Padding(
+                padding: const EdgeInsets.all(5),
+                child: ListView.builder(
+                  itemCount: _counter + 1,
+                  itemBuilder: (BuildContext context, int index) {
+                    if (index == 0) {
+                      return buildDateLabel(
+                          "${today.day}", "${today.month}", "${today.year}");
+                    } else if (index == _counter) {
+                      return buildAddButton("oe");
+                    }
+                    return buildSouvenirCard(controllers[index - 1]);
+                  },
+                ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const <Widget>[
-                  Text(
-                    "HappyMe",
-                    style: TextStyle(
-                      fontSize: 38,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Text(
-                    "Every day, just type 3 good things that happend.",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
-                  )
-                ],
-              ),
+            )
+          ];
+        } else if (snapshot.hasError) {
+          children = <Widget>[
+            const Icon(
+              Icons.error_outline,
+              color: Colors.red,
+              size: 60,
             ),
-            ListTile(
-              leading: const Icon(Icons.info),
-              title: const Text("About"),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const AboutPage()));
-              },
+            Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: Text('Error: ${snapshot.error}'),
+            )
+          ];
+        } else {
+          children = const <Widget>[
+            SizedBox(
+              width: 60,
+              height: 60,
+              child: CircularProgressIndicator(),
             ),
-            ListTile(
-              leading: const Icon(Icons.history),
-              title: const Text("Diary"),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => HistoryPage(
-                              storage: widget.storage,
-                              fileStor: inFile,
-                            )));
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text("Options"),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SettingsPage(
-                              storage: widget.storage,
-                              home: this,
-                            )));
-              },
-            ),
-          ],
-        ),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Padding(
-          padding: const EdgeInsets.all(5),
-          child: ListView.builder(
-            itemCount: _counter + 1,
-            itemBuilder: (BuildContext context, int index) {
-              if (index == 0) {
-                return buildDateLabel(
-                    "${today.day}", "${today.month}", "${today.year}");
-              } else if (index == _counter) {
-                return buildAddButton("oe");
-              }
-              return buildSouvenirCard(controllers[index - 1]);
-            },
+            Padding(
+              padding: EdgeInsets.only(top: 16),
+              child: Text('Awaiting result...'),
+            )
+          ];
+        }
+        return Scaffold(
+          appBar: AppBar(
+            // Here we take the value from the MyHomePage object that was created by
+            // the App.build method, and use it to set our appbar title.
+            title: Text(widget.title),
           ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: showWhatIsInside,
-        tooltip: 'Increment',
-        child: const Icon(Icons.check),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+          drawer: Drawer(
+            child: ListView(
+              children: [
+                DrawerHeader(
+                  decoration: const BoxDecoration(
+                    color: Colors.green,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const <Widget>[
+                      Text(
+                        "HappyMe",
+                        style: TextStyle(
+                          fontSize: 38,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        "Every day, just type 3 good things that happend.",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.info),
+                  title: const Text("About"),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AboutPage()));
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.history),
+                  title: const Text("Diary"),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HistoryPage(
+                                  storage: widget.storage,
+                                  fileStor: inFile,
+                                )));
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.settings),
+                  title: const Text("Options"),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SettingsPage(
+                                  storage: widget.storage,
+                                  home: this,
+                                )));
+                  },
+                ),
+              ],
+            ),
+          ),
+          body: children[0], //normalement c'est bon
+          floatingActionButton: FloatingActionButton(
+            onPressed: showWhatIsInside,
+            tooltip: 'Increment',
+            child: const Icon(Icons.check),
+          ), // This trailing comma makes auto-formatting nicer for build methods.
+        );
+      },
     );
   }
 
