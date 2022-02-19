@@ -6,7 +6,6 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/substringFinder.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,6 +16,9 @@ import 'api/notification_push.dart';
 
 //TODO maybe add some animations
 //TODO add a real icon
+//TODO Make a better looking message in the diary
+//TODO Make the changes in the settings saved
+//TODO Notifs still dont work
 
 void main() {
   AwesomeNotifications().initialize(
@@ -174,9 +176,6 @@ class _MyHomePageState extends State<MyHomePage>
         if (a.memo.last['Date'].toString() ==
             [today.day, today.month, today.year].toString()) {
           _counter = a.memo.last['souvenirs'].length + 1;
-          print("the counter value at init is  : ");
-          print(_counter);
-
           controllers = [];
           for (int i = 0; i < _counter - 1; i++) {
             controllers.add(TextEditingController());
@@ -524,9 +523,6 @@ class HistoryPage extends StatefulWidget {
       );
       cards.add(card);
     }
-
-    print(cards.length.toString() + "/*\\" + souv.length.toString());
-
     return Card(
         elevation: 0.5,
         color: Colors.grey[350],

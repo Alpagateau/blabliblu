@@ -1,3 +1,6 @@
+// ignore_for_file: file_names
+
+// ignore: non_constant_identifier_names
 List findSubs(String Base, String motif) {
   List<int> indexes = [];
   int mLenght = motif.length;
