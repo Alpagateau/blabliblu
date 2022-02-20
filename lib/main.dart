@@ -51,6 +51,7 @@ class MeApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.green,
+          backgroundColor: Colors.white,
           cardTheme: CardTheme(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(32.0),
@@ -291,7 +292,7 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   Widget build(BuildContext context) {
     final Future<String> _waiting = Future<String>.delayed(
-      const Duration(milliseconds: 3),
+      const Duration(seconds: 2),
       () => 'Data Loaded',
     );
     // This method is rerun every time setState is called, for instance as done
@@ -306,24 +307,31 @@ class _MyHomePageState extends State<MyHomePage>
         List<Widget> children;
         if (snapshot.hasData) {
           children = [
-            Center(
-              // Center is a layout widget. It takes a single child and positions it
-              // in the middle of the parent.
-              child: Padding(
-                padding: const EdgeInsets.all(5),
-                child: ListView.builder(
-                  itemCount: _counter + 1,
-                  itemBuilder: (BuildContext context, int index) {
-                    if (index == 0) {
-                      return buildDateLabel(
-                          "${today.day}", "${today.month}", "${today.year}");
-                    } else if (index == _counter) {
-                      return buildAddButton("oe");
-                    }
-                    return buildSouvenirCard(controllers[index - 1]);
-                  },
+            Stack(
+              children: <Widget>[
+                Center(
+                  child: Image.asset("assets/images/heartChar.jpg"),
                 ),
-              ),
+                Center(
+                  // Center is a layout widget. It takes a single child and positions it
+                  // in the middle of the parent.
+                  child: Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: ListView.builder(
+                      itemCount: _counter + 1,
+                      itemBuilder: (BuildContext context, int index) {
+                        if (index == 0) {
+                          return buildDateLabel("${today.day}",
+                              "${today.month}", "${today.year}");
+                        } else if (index == _counter) {
+                          return buildAddButton("oe");
+                        }
+                        return buildSouvenirCard(controllers[index - 1]);
+                      },
+                    ),
+                  ),
+                )
+              ],
             )
           ];
         } else if (snapshot.hasError) {
@@ -340,10 +348,12 @@ class _MyHomePageState extends State<MyHomePage>
           ];
         } else {
           children = const <Widget>[
-            SizedBox(
-              width: 60,
-              height: 60,
-              child: CircularProgressIndicator(),
+            Center(
+              child: SizedBox(
+                width: 60,
+                height: 60,
+                child: CircularProgressIndicator(),
+              ),
             ),
             Padding(
               padding: EdgeInsets.only(top: 16),
@@ -567,8 +577,15 @@ class HistoryPageState extends State<HistoryPage> {
                         souv[i]['Date'][2],
                         List<String>.from(souv[i]['souvenirs'])));
                   }
-                  finalList.add(const Text(
-                      "Nothing more to see here, try to write every day to see the lenght of this list becoming longer"));
+                  finalList.add(Padding(
+                      padding: EdgeInsets.all(20),
+                      child: const Text(
+                        "Nothing more to see here, try to write every day to see the lenght of this list getting longer",
+                        style: const TextStyle(
+                          fontSize: 19,
+                          color: Colors.grey,
+                        ),
+                      )));
                   children = <Widget>[
                     const Icon(
                       Icons.check_circle_outline,
