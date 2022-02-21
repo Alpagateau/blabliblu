@@ -68,6 +68,23 @@ class AboutPage extends StatelessWidget {
               ),
               const Divider(),
               const Text(
+                "Some tips",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
+                ),
+              ),
+              const Text(
+                "\n So, from my view, you sould try to be as precise as possible while writing, it will make the text longer and may force you to use multiple cells, at the end, when you'll look back at it, it would seems like u did more work !!",
+                style: TextStyle(
+                  fontSize: 18,
+                  wordSpacing: 5,
+                  letterSpacing: 1,
+                ),
+                textAlign: TextAlign.justify,
+              ),
+              const Divider(),
+              const Text(
                 "Three good things ?",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
