@@ -18,7 +18,7 @@ import 'api/notification_push.dart';
 //TODO add a real icon
 //TODO Make a better looking message in the diary
 //TODO Make the changes in the settings saved
-//TODO Notifs still dont work
+//TODO Notifs still dont work (Myb try a free online service?)
 
 void main() {
   AwesomeNotifications().initialize(
@@ -35,8 +35,11 @@ void main() {
         channelKey: 'scheduled_channel',
         channelName: 'Scheduled Notifications',
         defaultColor: Colors.teal,
+        importance: NotificationImportance.High,
+        channelShowBadge: true,
       ),
     ],
+      debug: true
   );
   runApp(const MeApp());
 }

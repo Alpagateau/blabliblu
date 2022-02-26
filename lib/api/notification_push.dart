@@ -50,6 +50,7 @@ Future<void> createReminderNotification(int d, int? h, int? m) async {
       minute: m,
       second: 0,
       millisecond: 0,
+      allowWhileIdle: true,
       repeats: true,
     ),
   );
