@@ -9,6 +9,7 @@ import 'package:flutter_application_1/substringFinder.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_background/flutter_background.dart';
 
 import 'aboutPageWidget.dart';
 import 'souvenir.dart';
@@ -22,25 +23,24 @@ import 'api/notification_push.dart';
 
 void main() {
   AwesomeNotifications().initialize(
-    'resource://drawable/res_app_icon',
-    [
-      NotificationChannel(
-        channelKey: 'basic_channel',
-        channelName: 'Basic Notifications',
-        defaultColor: Colors.teal,
-        importance: NotificationImportance.High,
-        channelShowBadge: true,
-      ),
-      NotificationChannel(
-        channelKey: 'scheduled_channel',
-        channelName: 'Scheduled Notifications',
-        defaultColor: Colors.teal,
-        importance: NotificationImportance.High,
-        channelShowBadge: true,
-      ),
-    ],
-      debug: true
-  );
+      'resource://drawable/res_app_icon',
+      [
+        NotificationChannel(
+          channelKey: 'basic_channel',
+          channelName: 'Basic Notifications',
+          defaultColor: Colors.teal,
+          importance: NotificationImportance.High,
+          channelShowBadge: true,
+        ),
+        NotificationChannel(
+          channelKey: 'scheduled_channel',
+          channelName: 'Scheduled Notifications',
+          defaultColor: Colors.teal,
+          importance: NotificationImportance.High,
+          channelShowBadge: true,
+        ),
+      ],
+      debug: true);
   runApp(const MeApp());
 }
 
@@ -203,13 +203,6 @@ class _MyHomePageState extends State<MyHomePage>
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context);
-                            createReminderNotification(1, 18, 30);
-                            createReminderNotification(2, 18, 30);
-                            createReminderNotification(3, 18, 30);
-                            createReminderNotification(4, 18, 30);
-                            createReminderNotification(5, 18, 30);
-                            createReminderNotification(6, 18, 30);
-                            createReminderNotification(7, 18, 30);
                           },
                           child: const Text(
                             'Don\'t Allow',
@@ -218,8 +211,17 @@ class _MyHomePageState extends State<MyHomePage>
                         ),
                         TextButton(
                             onPressed: () => AwesomeNotifications()
-                                .requestPermissionToSendNotifications()
-                                .then((value) => Navigator.pop(context)),
+                                    .requestPermissionToSendNotifications()
+                                    .then((value) {
+                                  Navigator.pop(context);
+                                  createReminderNotification(1, 18, 30);
+                                  createReminderNotification(2, 18, 30);
+                                  createReminderNotification(3, 18, 30);
+                                  createReminderNotification(4, 18, 30);
+                                  createReminderNotification(5, 18, 30);
+                                  createReminderNotification(6, 18, 30);
+                                  createReminderNotification(7, 18, 30);
+                                }),
                             child: const Text(
                               'Allow',
                               style: TextStyle(
