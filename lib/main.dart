@@ -9,10 +9,12 @@ import 'package:flutter_application_1/substringFinder.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 import 'aboutPageWidget.dart';
 import 'souvenir.dart';
 import 'api/notification_push.dart';
+import 'keys.dart' as keys;
 
 //TODO maybe add some animations
 //TODO add a real icon
@@ -20,7 +22,7 @@ import 'api/notification_push.dart';
 //TODO Make the changes in the settings saved
 //TODO Notifs still dont work (Myb try a free online service?)
 
-void main() {
+void main() async {
   AwesomeNotifications().initialize(
       'resource://drawable/res_app_icon',
       [
@@ -40,6 +42,22 @@ void main() {
         ),
       ],
       debug: true);
+  //parse code
+  WidgetsFlutterBinding.ensureInitialized();
+  final keyApplicationId = keys.appID;
+  final keyClientKey = keys.clienID;
+  final keyParseServerUrl = 'https://parseapi.back4app.com';
+
+  await Parse().initialize(keyApplicationId, keyParseServerUrl,
+      clientKey: keyClientKey, autoSendSessionId: true);
+
+  var firstObject = ParseObject('FirstClass')
+    ..set(
+        'message', 'Hey ! First message from Flutter. Parse is now connected');
+  await firstObject.save();
+
+  print('done');
+  //Yep
   runApp(const MeApp());
 }
 
