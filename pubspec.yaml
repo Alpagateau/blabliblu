@@ -27,6 +27,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  parse_server_sdk_flutter: ^3.1.0
   flutter:
     sdk: flutter
   path_provider: ^2.0.6
@@ -39,6 +40,7 @@ dependencies:
   awesome_notifications: ^0.0.6+10
   url_launcher: ^6.0.18
   shared_preferences: ^2.0.12
+  connectivity_plus_web: ^1.2.0
 
 dev_dependencies:
   flutter_test:
