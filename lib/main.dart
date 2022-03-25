@@ -16,31 +16,29 @@ import 'api/notification_push.dart';
 
 //TODO maybe add some animations
 //TODO add a real icon
-//TODO Make a better looking message in the diary
-//TODO Make the changes in the settings saved
+
 //TODO Notifs still dont work (Myb try a free online service?)
 
 void main() {
   AwesomeNotifications().initialize(
-    'resource://drawable/res_app_icon',
-    [
-      NotificationChannel(
-        channelKey: 'basic_channel',
-        channelName: 'Basic Notifications',
-        defaultColor: Colors.teal,
-        importance: NotificationImportance.High,
-        channelShowBadge: true,
-      ),
-      NotificationChannel(
-        channelKey: 'scheduled_channel',
-        channelName: 'Scheduled Notifications',
-        defaultColor: Colors.teal,
-        importance: NotificationImportance.High,
-        channelShowBadge: true,
-      ),
-    ],
-      debug: true
-  );
+      'resource://drawable/res_app_icon',
+      [
+        NotificationChannel(
+          channelKey: 'basic_channel',
+          channelName: 'Basic Notifications',
+          defaultColor: Colors.teal,
+          importance: NotificationImportance.High,
+          channelShowBadge: true,
+        ),
+        NotificationChannel(
+          channelKey: 'scheduled_channel',
+          channelName: 'Scheduled Notifications',
+          defaultColor: Colors.teal,
+          importance: NotificationImportance.High,
+          channelShowBadge: true,
+        ),
+      ],
+      debug: true);
   runApp(const MeApp());
 }
 
@@ -188,9 +186,20 @@ class _MyHomePageState extends State<MyHomePage>
         }
 
         SharedPreferences.getInstance().then((value) {
-          schedulNotifs = value.getBool("notifs")!;
-          showContent = value.getBool("contentS")!;
+          try {
+            schedulNotifs =
+                value.getBool("notifs")! ? value.getBool("notifs")! : false;
+          } catch (e) {
+            print(e);
+          }
+          try {
+            showContent =
+                value.getBool("contentS")! ? value.getBool("contentS")! : false;
+          } catch (e) {
+            print(e);
+          }
         });
+
         AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
           if (!isAllowed) {
             showDialog(
@@ -584,7 +593,7 @@ class HistoryPageState extends State<HistoryPage> {
                       padding: EdgeInsets.all(20),
                       child: const Text(
                         "Nothing more to see here, try to write every day to see the lenght of this list getting longer",
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 19,
                           color: Colors.grey,
                         ),
