@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'package:awesome_notifications/awesome_notifications.dart';
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/substringFinder.dart';
+
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,6 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'aboutPageWidget.dart';
 import 'souvenir.dart';
 import 'api/notification_push.dart';
+import 'substringFinder.dart';
 
 //TODO maybe add some animations
 //TODO add a real icon

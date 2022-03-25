@@ -1,5 +1,5 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:flutter_application_1/api/utilities.dart';
+import 'utilities.dart';
 
 Future<void> createPlantFoodNotification() async {
   await AwesomeNotifications().createNotification(
