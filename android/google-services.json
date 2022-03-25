@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "653919775565",
+    "project_id": "threethings-b62a1",
+    "storage_bucket": "threethings-b62a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:653919775565:android:e8bc6e898782966e046504",
+        "android_client_info": {
+          "package_name": "com.alpagames.threethings"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "653919775565-r1q4hbubjluhchbboupb2f965bicl9v5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9UGcY0h87r-SwccJ4ldt6VFZ5smdnahQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "653919775565-r1q4hbubjluhchbboupb2f965bicl9v5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
