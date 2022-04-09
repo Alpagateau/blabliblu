@@ -6,10 +6,16 @@ import 'package:url_launcher/url_launcher.dart';
 //TODO continues the about page
 
 class AboutPage extends StatelessWidget {
-  const AboutPage({Key? key}) : super(key: key);
+  const AboutPage({
+    Key? key,
+    required this.pathE,
+  }) : super(key: key);
+
+  final String pathE;
 
   @override
   Widget build(BuildContext context) {
+    String a = "hello";
     return Scaffold(
         appBar: AppBar(title: const Text("About")),
         body: Padding(
@@ -59,6 +65,16 @@ class AboutPage extends StatelessWidget {
               ),
               const Text(
                 "\nEvery day, you'll receive a notification to remind you to write down the things that made you smile. Only one notification per day is sent. (you can disable them in the settings). When you enter information in the fields provided, the content is saved in a file of your own on your phone. Nothing is sent to anyone. Everything happens on your phone, in private. When you open the Diary, the file is opened and displayed in a convenient way. ",
+                style: TextStyle(
+                  fontSize: 18,
+                  wordSpacing: 5,
+                  letterSpacing: 1,
+                ),
+                textAlign: TextAlign.justify,
+              ),
+              const Divider(),
+              Text(
+                pathE,
                 style: TextStyle(
                   fontSize: 18,
                   wordSpacing: 5,

@@ -15,7 +15,6 @@ import 'souvenir.dart';
 import 'api/notification_push.dart';
 import 'substringFinder.dart';
 
-//TODO maybe add some animations
 //TODO add a real icon
 
 //TODO Notifs still dont work (Myb try a free online service?)
@@ -50,7 +49,7 @@ class MeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Blabliblu',
         theme: ThemeData(
           primarySwatch: Colors.green,
           backgroundColor: Colors.white,
@@ -62,7 +61,7 @@ class MeApp extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
           ),
         ),
-        home: MyHomePage(title: 'Me', storage: CounterStorage()));
+        home: MyHomePage(title: 'Blabliblu', storage: CounterStorage()));
   }
 }
 
@@ -124,6 +123,8 @@ class _MyHomePageState extends State<MyHomePage>
   int _counter = 4;
   DateTime today = DateTime.now();
 
+  String filePath = "##############";
+
   bool showContent = true;
   bool schedulNotifs = false;
 
@@ -164,6 +165,8 @@ class _MyHomePageState extends State<MyHomePage>
 
   void asyncLoader() async {
     await Future.delayed(const Duration(milliseconds: 2), () {});
+    Directory dir = await getApplicationDocumentsDirectory();
+    filePath = dir.path;
     setState(() {
       widget.storage.readCounter().then((String message) {
         if (message != "") {
@@ -391,7 +394,7 @@ class _MyHomePageState extends State<MyHomePage>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: const <Widget>[
                       Text(
-                        "HappyMe",
+                        "Blabliblu",
                         style: TextStyle(
                           fontSize: 38,
                           color: Colors.white,
@@ -414,7 +417,9 @@ class _MyHomePageState extends State<MyHomePage>
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const AboutPage()));
+                            builder: (context) => AboutPage(
+                                  pathE: filePath,
+                                )));
                   },
                 ),
                 ListTile(
@@ -590,9 +595,9 @@ class HistoryPageState extends State<HistoryPage> {
                         souv[i]['Date'][2],
                         List<String>.from(souv[i]['souvenirs'])));
                   }
-                  finalList.add(Padding(
+                  finalList.add(const Padding(
                       padding: EdgeInsets.all(20),
-                      child: const Text(
+                      child: Text(
                         "Nothing more to see here, try to write every day to see the lenght of this list getting longer",
                         style: TextStyle(
                           fontSize: 19,
