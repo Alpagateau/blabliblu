@@ -326,7 +326,7 @@ class _MyHomePageState extends State<MyHomePage>
             Stack(
               children: <Widget>[
                 Center(
-                  child: Image.asset("assets/images/heartChar.jpg"),
+                  child: Image.asset("assets/images/icon512.png"),
                 ),
                 Center(
                   // Center is a layout widget. It takes a single child and positions it

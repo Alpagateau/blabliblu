@@ -41,7 +41,7 @@ Future<void> createReminderNotification(int d, int? h, int? m) async {
       id: createUniqueId(),
       channelKey: 'scheduled_channel',
       title: 'How was your day ?',
-      body: 'Tell me what made you smile ${Emojis.smile_face_with_open_mouth}',
+      body: 'Tell me what made you smile ${Emojis.smile_ghost}',
       notificationLayout: NotificationLayout.Default,
     ),
     schedule: NotificationCalendar(
