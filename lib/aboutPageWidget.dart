@@ -30,7 +30,7 @@ class AboutPage extends StatelessWidget {
                 ),
               ),
               const Text(
-                "\nHi, thanks for using this app! It's a joy to know that my app can be useful to someone. \n",
+                "\n    Hi, thanks for using this app! It's a joy to know that my app can be useful to someone. \n",
                 style: TextStyle(
                   fontSize: 18,
                   wordSpacing: 5,
@@ -47,7 +47,7 @@ class AboutPage extends StatelessWidget {
                 ),
               ),
               const Text(
-                "\nThis application was created to help people who feel bad to get better. The idea came from an advice given by a friend when I was feeling bad. She told me to write down every night three things that made me smile during the day. After doing this for about two months, I decided to create this application to help people apply this advice. It also served as my first project to learn how to code applications for the general public. \n",
+                "\n    This application was created to help people who feel bad to get better. The idea came from an advice given by a friend when I was feeling bad. She told me to write down every night three things that made me smile during the day. After doing this for about two months, I decided to create this application to help people apply this advice. It also served as my first project to learn how to code applications for the general public. \n",
                 style: TextStyle(
                   fontSize: 18,
                   wordSpacing: 5,
@@ -64,7 +64,7 @@ class AboutPage extends StatelessWidget {
                 ),
               ),
               const Text(
-                "\nEvery day, you'll receive a notification to remind you to write down the things that made you smile. Only one notification per day is sent. (you can disable them in the settings). When you enter information in the fields provided, the content is saved in a file of your own on your phone. Nothing is sent to anyone. Everything happens on your phone, in private. When you open the Diary, the file is opened and displayed in a convenient way. ",
+                "\n    Every day, you'll receive a notification to remind you to write down the things that made you smile. Only one notification per day is sent. (you can disable them in the settings). When you enter information in the fields provided, the content is saved in a file of your own on your phone. Nothing is sent to anyone. Everything happens on your phone, in private. When you open the Diary, the file is opened and displayed in a convenient way. ",
                 style: TextStyle(
                   fontSize: 18,
                   wordSpacing: 5,
@@ -91,7 +91,7 @@ class AboutPage extends StatelessWidget {
                 ),
               ),
               const Text(
-                "\n So, from my view, you sould try to be as precise as possible while writing, it will make the text longer and may force you to use multiple cells, at the end, when you'll look back at it, it would seems like u did more work !!",
+                "\n    So, from my view, you sould try to be as precise as possible while writing, it will make the text longer and may force you to use multiple cells, at the end, when you'll look back at it, it would seems like u did more work !!",
                 style: TextStyle(
                   fontSize: 18,
                   wordSpacing: 5,
@@ -108,7 +108,7 @@ class AboutPage extends StatelessWidget {
                 ),
               ),
               const Text(
-                "\nThe \"3 good things\" principle is an idea that allows us to focus on the positive. It has been used in particular for health care workers in order to combat possible depression",
+                "\n    The \"3 good things\" principle is an idea that allows us to focus on the positive. It has been used in particular for health care workers in order to combat possible depression",
                 style: TextStyle(
                   fontSize: 18,
                   wordSpacing: 5,
@@ -120,7 +120,7 @@ class AboutPage extends StatelessWidget {
                 "Sources : ",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 25,
+                  fontSize: 22,
                 ),
               ),
               InkWell(
@@ -137,6 +137,23 @@ class AboutPage extends StatelessWidget {
                 child: const Text("Dr. Seligman : Three Good Things"),
                 onTap: () =>
                     launch("https://www.youtube.com/watch?v=ZOGAp9dw8Ac"),
+              ),
+              const Divider(),
+              const Text(
+                "Credits",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25,
+                ),
+              ),
+              const Text(
+                "\n    The code was mainly made by Martin Nadaud (Alpagateau), but helped by the contributors on github. The icon was made by Marie Perrier (@art_with_marie)",
+                style: TextStyle(
+                  fontSize: 18,
+                  wordSpacing: 5,
+                  letterSpacing: 1,
+                ),
+                textAlign: TextAlign.justify,
               ),
             ],
           ),

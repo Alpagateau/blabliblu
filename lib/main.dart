@@ -706,7 +706,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   widget.home.resetCounter();
                 },
                 child: const Text(
-                  "Reset Counter",
+                  "Reset Memory List Lenght",
                   style: TextStyle(fontSize: 18),
                 )),
             //Notifs
