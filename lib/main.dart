@@ -125,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage>
 
   String filePath = "##############";
 
-  bool showContent = true;
+  bool showContent = false;
   bool schedulNotifs = false;
 
   List<TextEditingController> controllers = [
@@ -727,13 +727,13 @@ class _SettingsPageState extends State<SettingsPage> {
               value: timeDilation != 1.0,
               onChanged: (bool? value) {
                 setState(() {
-                  timeDilation = value! ? 10.0 : 1.0;
+                  timeDilation = value! ? 3.0 : 1.0;
                 });
               },
               secondary: const Icon(Icons.hourglass_empty),
             ),
             CheckboxListTile(
-              title: const Text('Show Memory Content'),
+              title: const Text('Show Memory Content (Debug)'),
               value: widget.home.showContent,
               onChanged: (bool? value) {
                 setState(() {
