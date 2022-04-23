@@ -14,6 +14,7 @@ import 'aboutPageWidget.dart';
 import 'souvenir.dart';
 import 'api/notification_push.dart';
 import 'substringFinder.dart';
+import 'themes.dart' as themes;
 
 //TODO add a real icon
 
@@ -50,17 +51,7 @@ class MeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Blabliblu',
-        theme: ThemeData(
-          primarySwatch: Colors.green,
-          backgroundColor: Colors.white,
-          cardTheme: CardTheme(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(32.0),
-              side: const BorderSide(color: Colors.grey, width: 1.2),
-            ),
-            clipBehavior: Clip.antiAlias,
-          ),
-        ),
+        theme: themes.MainTheme,
         home: MyHomePage(title: 'Blabliblu', storage: CounterStorage()));
   }
 }
@@ -323,31 +314,34 @@ class _MyHomePageState extends State<MyHomePage>
         List<Widget> children;
         if (snapshot.hasData) {
           children = [
-            Stack(
-              children: <Widget>[
-                Center(
-                  child: Image.asset("assets/images/icon512.png"),
-                ),
-                Center(
-                  // Center is a layout widget. It takes a single child and positions it
-                  // in the middle of the parent.
-                  child: Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: ListView.builder(
-                      itemCount: _counter + 1,
-                      itemBuilder: (BuildContext context, int index) {
-                        if (index == 0) {
-                          return buildDateLabel("${today.day}",
-                              "${today.month}", "${today.year}");
-                        } else if (index == _counter) {
-                          return buildAddButton("oe");
-                        }
-                        return buildSouvenirCard(controllers[index - 1]);
-                      },
-                    ),
+            Container(
+              color: Theme.of(context).backgroundColor,
+              child: Stack(
+                children: <Widget>[
+                  Center(
+                    child: Image.asset("assets/images/icon512.png"),
                   ),
-                )
-              ],
+                  Center(
+                    // Center is a layout widget. It takes a single child and positions it
+                    // in the middle of the parent.
+                    child: Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: ListView.builder(
+                        itemCount: _counter + 1,
+                        itemBuilder: (BuildContext context, int index) {
+                          if (index == 0) {
+                            return buildDateLabel("${today.day}",
+                                "${today.month}", "${today.year}");
+                          } else if (index == _counter) {
+                            return buildAddButton("oe");
+                          }
+                          return buildSouvenirCard(controllers[index - 1]);
+                        },
+                      ),
+                    ),
+                  )
+                ],
+              ),
             )
           ];
         } else if (snapshot.hasError) {
@@ -387,8 +381,8 @@ class _MyHomePageState extends State<MyHomePage>
             child: ListView(
               children: [
                 DrawerHeader(
-                  decoration: const BoxDecoration(
-                    color: Colors.green,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -465,17 +459,21 @@ class _MyHomePageState extends State<MyHomePage>
   Widget buildSouvenirCard(TextEditingController controller) {
     return Card(
       elevation: 3.0,
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(6, 2, 0, 2),
-        child: TextField(
-          controller: controller,
-          maxLines: null,
-          style: (const TextStyle(
-            fontSize: 20,
-            fontFamily: 'Raleway',
-          )),
-          decoration: const InputDecoration(
-            hintText: "Enter your good moment",
+      color: Theme.of(context).cardTheme.color,
+      child: Container(
+        color: Theme.of(context).cardColor,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(6, 2, 0, 2),
+          child: TextField(
+            controller: controller,
+            maxLines: null,
+            style: (TextStyle(
+                fontSize: 20,
+                fontFamily: 'Raleway',
+                color: Theme.of(context).textTheme.bodyText1!.color)),
+            decoration: const InputDecoration(
+              hintText: "Enter your good moment",
+            ),
           ),
         ),
       ),
@@ -484,7 +482,7 @@ class _MyHomePageState extends State<MyHomePage>
 
   Widget buildAddButton(String s) {
     return Card(
-      color: Colors.green,
+      color: Theme.of(context).primaryColor,
       elevation: 3.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(32.0),
@@ -492,7 +490,7 @@ class _MyHomePageState extends State<MyHomePage>
       ),
       child: IconButton(
         icon: const Icon(Icons.add),
-        color: Colors.white,
+        color: Theme.of(context).backgroundColor,
         iconSize: 50,
         onPressed: () {
           _incrementCounter();
@@ -505,13 +503,16 @@ class _MyHomePageState extends State<MyHomePage>
     return Card(
         elevation: 0,
         shape: const RoundedRectangleBorder(side: BorderSide.none),
+        color: Theme.of(context).backgroundColor,
         child: Center(
           child: Text(
             d + "/" + m + "/" + y,
-            style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Raleway'),
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Raleway',
+              color: Theme.of(context).hintColor,
+            ),
           ),
         ));
   }
