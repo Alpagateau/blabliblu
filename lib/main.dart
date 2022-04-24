@@ -52,6 +52,7 @@ class MeApp extends StatelessWidget {
     return MaterialApp(
         title: 'Blabliblu',
         theme: themes.MainTheme,
+        darkTheme: themes.DarkTheme,
         home: MyHomePage(title: 'Blabliblu', storage: CounterStorage()));
   }
 }
@@ -253,6 +254,7 @@ class _MyHomePageState extends State<MyHomePage>
           builder: (context) {
             String value = showContent ? message : "Saved";
             return AlertDialog(content: Text(value));
+            // TODO Style alerts
           });
     });
   }
@@ -314,16 +316,16 @@ class _MyHomePageState extends State<MyHomePage>
         List<Widget> children;
         if (snapshot.hasData) {
           children = [
-            Container(
-              color: Theme.of(context).backgroundColor,
-              child: Stack(
-                children: <Widget>[
-                  Center(
-                    child: Image.asset("assets/images/icon512.png"),
-                  ),
-                  Center(
-                    // Center is a layout widget. It takes a single child and positions it
-                    // in the middle of the parent.
+            Stack(
+              children: <Widget>[
+                Center(
+                  child: Image.asset("assets/images/icon512.png"),
+                ),
+                Center(
+                  // Center is a layout widget. It takes a single child and positions it
+                  // in the middle of the parent.
+                  child: Container(
+                    //color: Theme.of(context).backgroundColor,
                     child: Padding(
                       padding: const EdgeInsets.all(5),
                       child: ListView.builder(
@@ -339,9 +341,9 @@ class _MyHomePageState extends State<MyHomePage>
                         },
                       ),
                     ),
-                  )
-                ],
-              ),
+                  ),
+                ),
+              ],
             )
           ];
         } else if (snapshot.hasError) {
@@ -372,77 +374,90 @@ class _MyHomePageState extends State<MyHomePage>
           ];
         }
         return Scaffold(
+          backgroundColor: Theme.of(context).backgroundColor,
           appBar: AppBar(
             // Here we take the value from the MyHomePage object that was created by
             // the App.build method, and use it to set our appbar title.
             title: Text(widget.title),
           ),
           drawer: Drawer(
-            child: ListView(
-              children: [
-                DrawerHeader(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
+            child: Container(
+              color: Theme.of(context).backgroundColor,
+              child: ListView(
+                children: [
+                  DrawerHeader(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text("Blabliblu",
+                            style: Theme.of(context).textTheme.headline1),
+                        Text("Every day, just type 3 good things that happend.",
+                            style: Theme.of(context).textTheme.headline2),
+                      ],
+                    ),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const <Widget>[
-                      Text(
-                        "Blabliblu",
-                        style: TextStyle(
-                          fontSize: 38,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        "Every day, just type 3 good things that happend.",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
-                      )
-                    ],
+                  ListTile(
+                    leading: Icon(
+                      Icons.info,
+                      color: Theme.of(context).textTheme.subtitle2?.color,
+                    ),
+                    title: Text(
+                      "About",
+                      style: Theme.of(context).textTheme.subtitle2,
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AboutPage(
+                                    pathE: filePath,
+                                  )));
+                    },
                   ),
-                ),
-                ListTile(
-                  leading: const Icon(Icons.info),
-                  title: const Text("About"),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AboutPage(
-                                  pathE: filePath,
-                                )));
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(Icons.history),
-                  title: const Text("Diary"),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => HistoryPage(
-                                  storage: widget.storage,
-                                  fileStor: inFile,
-                                )));
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(Icons.settings),
-                  title: const Text("Options"),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SettingsPage(
-                                  storage: widget.storage,
-                                  home: this,
-                                )));
-                  },
-                ),
-              ],
+                  ListTile(
+                    leading: Icon(
+                      Icons.history,
+                      color: Theme.of(context).textTheme.subtitle2?.color,
+                    ),
+                    title: Text(
+                      "Diary",
+                      style: Theme.of(context).textTheme.subtitle2,
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HistoryPage(
+                                    storage: widget.storage,
+                                    fileStor: inFile,
+                                    context: context,
+                                  )));
+                    },
+                  ),
+                  ListTile(
+                    leading: Icon(
+                      Icons.settings,
+                      color: Theme.of(context).textTheme.subtitle2?.color,
+                    ),
+                    title: Text(
+                      "Options",
+                      style: Theme.of(context).textTheme.subtitle2,
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SettingsPage(
+                                    storage: widget.storage,
+                                    home: this,
+                                  )));
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
           body: children[0], //normalement c'est bon
@@ -467,10 +482,7 @@ class _MyHomePageState extends State<MyHomePage>
           child: TextField(
             controller: controller,
             maxLines: null,
-            style: (TextStyle(
-                fontSize: 20,
-                fontFamily: 'Raleway',
-                color: Theme.of(context).textTheme.bodyText1!.color)),
+            style: Theme.of(context).textTheme.headline5,
             decoration: const InputDecoration(
               hintText: "Enter your good moment",
             ),
@@ -507,12 +519,7 @@ class _MyHomePageState extends State<MyHomePage>
         child: Center(
           child: Text(
             d + "/" + m + "/" + y,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Raleway',
-              color: Theme.of(context).hintColor,
-            ),
+            style: Theme.of(context).textTheme.headline3,
           ),
         ));
   }
@@ -520,7 +527,11 @@ class _MyHomePageState extends State<MyHomePage>
 
 // ignore: must_be_immutable
 class HistoryPage extends StatefulWidget {
-  HistoryPage({Key? key, required this.storage, required this.fileStor})
+  HistoryPage(
+      {Key? key,
+      required this.storage,
+      required this.fileStor,
+      required this.context})
       : super(key: key);
 
   List<String> getValues() {
@@ -529,12 +540,12 @@ class HistoryPage extends StatefulWidget {
 
   CounterStorage storage;
   String fileStor;
+  BuildContext context;
   Widget buildSouvenirCard(int D, int M, int Y, List<String> souv) {
     List<Widget> cards = [
       Text(
         "$D/$M/$Y",
-        style: const TextStyle(
-            fontSize: 25, fontWeight: FontWeight.bold, fontFamily: 'Raleway'),
+        style: Theme.of(context).textTheme.headline4,
       )
     ];
     for (int i = 0; i < souv.length; i++) {
@@ -545,7 +556,7 @@ class HistoryPage extends StatefulWidget {
             padding: const EdgeInsets.all(10),
             child: Text(
               souv[i],
-              style: const TextStyle(fontSize: 16, fontFamily: 'Raleway'),
+              style: Theme.of(context).textTheme.headline5,
             ),
           ),
         ),
@@ -554,7 +565,7 @@ class HistoryPage extends StatefulWidget {
     }
     return Card(
         elevation: 0.5,
-        color: Colors.grey[350],
+        color: Theme.of(context).focusColor,
         child: Padding(
             padding: const EdgeInsets.fromLTRB(8, 2, 8, 2),
             child: Center(child: Column(children: cards))));
@@ -568,8 +579,12 @@ class HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
-          title: const Text("History"),
+          title: Text(
+            "Diary",
+            style: Theme.of(context).textTheme.headline2,
+          ),
         ),
         body: ListView(
           children: [
@@ -596,19 +611,16 @@ class HistoryPageState extends State<HistoryPage> {
                         souv[i]['Date'][2],
                         List<String>.from(souv[i]['souvenirs'])));
                   }
-                  finalList.add(const Padding(
+                  finalList.add(Padding(
                       padding: EdgeInsets.all(20),
                       child: Text(
                         "Nothing more to see here, try to write every day to see the lenght of this list getting longer",
-                        style: TextStyle(
-                          fontSize: 19,
-                          color: Colors.grey,
-                        ),
+                        style: Theme.of(context).textTheme.headline6,
                       )));
                   children = <Widget>[
-                    const Icon(
+                    Icon(
                       Icons.check_circle_outline,
-                      color: Colors.green,
+                      color: Theme.of(context).primaryColor,
                       size: 60,
                     ),
                     Padding(
@@ -674,8 +686,9 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
-          title: const Text("History"),
+          title: Text("History", style: Theme.of(context).textTheme.headline2),
         ),
         body: ListView(
           children: [
@@ -724,17 +737,26 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             const Divider(),
             CheckboxListTile(
-              title: const Text('Animate Slowly'),
+              title: Text(
+                'Animate Slowly',
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
               value: timeDilation != 1.0,
               onChanged: (bool? value) {
                 setState(() {
                   timeDilation = value! ? 3.0 : 1.0;
                 });
               },
-              secondary: const Icon(Icons.hourglass_empty),
+              secondary: Icon(
+                Icons.hourglass_empty,
+                color: Theme.of(context).textTheme.subtitle1?.color,
+              ),
             ),
             CheckboxListTile(
-              title: const Text('Show Memory Content (Debug)'),
+              title: Text(
+                'Show Memory Content (Debug)',
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
               value: widget.home.showContent,
               onChanged: (bool? value) {
                 setState(() {
@@ -744,7 +766,10 @@ class _SettingsPageState extends State<SettingsPage> {
                   });
                 });
               },
-              secondary: const Icon(Icons.ad_units),
+              secondary: Icon(
+                Icons.ad_units,
+                color: Theme.of(context).textTheme.subtitle1?.color,
+              ),
             ),
             const Padding(
               padding: EdgeInsets.fromLTRB(4, 16, 4, 0),
@@ -760,7 +785,10 @@ class _SettingsPageState extends State<SettingsPage> {
             const Divider(),
             const Divider(),
             CheckboxListTile(
-              title: const Text('Send Notifs'),
+              title: Text(
+                'Send Notifs',
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
               value: widget.home.schedulNotifs,
               onChanged: (bool? value) {
                 setState(() {
@@ -787,7 +815,10 @@ class _SettingsPageState extends State<SettingsPage> {
                   }
                 });
               },
-              secondary: const Icon(Icons.ad_units),
+              secondary: Icon(
+                Icons.ad_units,
+                color: Theme.of(context).textTheme.subtitle1?.color,
+              ),
             ),
           ],
         ));
