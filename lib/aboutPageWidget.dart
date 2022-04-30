@@ -170,7 +170,7 @@ class AboutPage extends StatelessWidget {
                 ),
               ),
               Text(
-                "\n    The code was mainly made by Martin Nadaud (Alpagateau), but helped by the contributors on github. The icon was made by Marie Perrier (@art_with_marie)",
+                "\n    The code was mainly made by Martin Nadaud (Alpagateau), but helped by the contributors on github. The icon and background were made by Marie Perrier (@art_with_marie)",
                 style: TextStyle(
                   fontSize: 18,
                   wordSpacing: 5,

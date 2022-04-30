@@ -17,7 +17,7 @@ import 'substringFinder.dart';
 import 'themes.dart' as themes;
 
 //TODO add a real icon
-
+//TODO save method should merge double saves
 //TODO Notifs still dont work (Myb try a free online service?)
 
 void main() {
@@ -319,7 +319,7 @@ class _MyHomePageState extends State<MyHomePage>
             Stack(
               children: <Widget>[
                 Center(
-                  child: Image.asset("assets/images/icon512.png"),
+                  child: Image.asset("assets/images/shamBG.png"),
                 ),
                 Center(
                   // Center is a layout widget. It takes a single child and positions it
