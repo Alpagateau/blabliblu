@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:convert';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:blabliblu/loadingIcon.dart';
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -16,9 +17,11 @@ import 'api/notification_push.dart';
 import 'substringFinder.dart';
 import 'themes.dart' as themes;
 
-//TODO add a real icon
 //TODO save method should merge double saves
 //TODO Notifs still dont work (Myb try a free online service?)
+//TODO Translate everything to french yk
+//TODO Export data and load data
+//TODO Animations
 
 void main() {
   AwesomeNotifications().initialize(
@@ -125,7 +128,6 @@ class _MyHomePageState extends State<MyHomePage>
     TextEditingController(),
     TextEditingController()
   ];
-
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -359,17 +361,17 @@ class _MyHomePageState extends State<MyHomePage>
             )
           ];
         } else {
-          children = const <Widget>[
+          children = <Widget>[
             Center(
               child: SizedBox(
-                width: 60,
-                height: 60,
-                child: CircularProgressIndicator(),
-              ),
+                  width: 180,
+                  height: 180,
+                  //child: CircularProgressIndicator(),
+                  child: loadingIcon()),
             ),
             Padding(
               padding: EdgeInsets.only(top: 16),
-              child: Text('Awaiting result...'),
+              child: Text('Awaiting for data...'),
             )
           ];
         }
