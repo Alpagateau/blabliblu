@@ -212,7 +212,10 @@ class _MyHomePageState extends State<MyHomePage>
           context: context,
           builder: (context) {
             String value = showContent ? message : "Saved";
-            return AlertDialog(content: Text(value));
+            return AlertDialog(
+              content: Text(value),
+              backgroundColor: Theme.of(context).backgroundColor,
+            );
             // TODO Style alerts
           });
     });
