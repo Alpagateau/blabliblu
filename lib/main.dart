@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:convert';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:blabliblu/loadingIcon.dart';
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -11,14 +12,17 @@ import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'aboutPageWidget.dart';
+import 'memorySaving.dart';
 import 'souvenir.dart';
 import 'api/notification_push.dart';
 import 'substringFinder.dart';
 import 'themes.dart' as themes;
 
-//TODO add a real icon
-
+//TODO save method should merge double saves
 //TODO Notifs still dont work (Myb try a free online service?)
+//TODO Translate everything to french yk
+//TODO Export data and load data
+//TODO Animations
 
 void main() {
   AwesomeNotifications().initialize(
@@ -60,54 +64,10 @@ class MeApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title, required this.storage})
       : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
   final CounterStorage storage;
   @override
   State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class CounterStorage {
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-
-    return directory.path;
-  }
-
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    return File('$path/counter.txt');
-  }
-
-  Future<String> readCounter() async {
-    try {
-      final file = await _localFile;
-
-      // Read the file
-      final contents = await file.readAsString();
-
-      return contents;
-    } catch (e) {
-      // If encountering an error, return 0
-      return "";
-    }
-  }
-
-  Future<File> writeCounter(String counter) async {
-    final file = await _localFile;
-
-    // Write the file
-    return file.writeAsString(counter);
-  }
 }
 
 class _MyHomePageState extends State<MyHomePage>
@@ -125,7 +85,6 @@ class _MyHomePageState extends State<MyHomePage>
     TextEditingController(),
     TextEditingController()
   ];
-
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -248,7 +207,7 @@ class _MyHomePageState extends State<MyHomePage>
       if (message == "{\"Memory\" : [{}") {
         inFile = "{\"Memory\" : [{}";
       }
-      saveDay();
+      saveDay(inFile, today, controllers, widget.storage);
       showDialog(
           context: context,
           builder: (context) {
@@ -257,43 +216,6 @@ class _MyHomePageState extends State<MyHomePage>
             // TODO Style alerts
           });
     });
-  }
-
-  void saveDay() {
-    String jsonResult = inFile;
-    String jsond = jsonResult + "]}";
-    final parsedJson = jsonDecode(jsond);
-
-    final a = Memoir.fromJson(parsedJson);
-    if (a.memo.last['Date'].toString() ==
-        [today.day, today.month, today.year].toString()) {
-      final indexes = findSubs(inFile, "},{");
-      inFile = inFile.substring(0, indexes.last + 1);
-      jsond = inFile + "]}";
-//now we do some noraml shit
-      jsonResult += ",{";
-      jsonResult +=
-          "\"Date\" : [${today.day},${today.month},${today.year}],\"souvenirs\":[";
-      for (int i = 0; i < controllers.length; i++) {
-        jsonResult += "\"" + controllers[i].text + "\"";
-        if (i < controllers.length - 1) {
-          jsonResult += ",";
-        }
-      }
-      jsonResult += "]}";
-    } else {
-      jsonResult += ",{";
-      jsonResult +=
-          "\"Date\" : [${today.day},${today.month},${today.year}],\"souvenirs\":[";
-      for (int i = 0; i < controllers.length; i++) {
-        jsonResult += "\"" + controllers[i].text + "\"";
-        if (i < controllers.length - 1) {
-          jsonResult += ",";
-        }
-      }
-      jsonResult += "]}";
-    }
-    widget.storage.writeCounter(jsonResult);
   }
 
   late AnimationController controller;
@@ -358,17 +280,17 @@ class _MyHomePageState extends State<MyHomePage>
             )
           ];
         } else {
-          children = const <Widget>[
+          children = <Widget>[
             Center(
               child: SizedBox(
-                width: 60,
-                height: 60,
-                child: CircularProgressIndicator(),
-              ),
+                  width: 180,
+                  height: 180,
+                  //child: CircularProgressIndicator(),
+                  child: loadingIcon()),
             ),
             Padding(
               padding: EdgeInsets.only(top: 16),
-              child: Text('Awaiting result...'),
+              child: Text('Awaiting for data...'),
             )
           ];
         }
