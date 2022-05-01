@@ -319,27 +319,26 @@ class _MyHomePageState extends State<MyHomePage>
             Stack(
               children: <Widget>[
                 Center(
-                  child: Image.asset("assets/images/icon512.png"),
+                  child: ((Theme.of(context).backgroundColor == Colors.white)
+                      ? Image.asset("assets/images/icon512.png")
+                      : null),
                 ),
                 Center(
                   // Center is a layout widget. It takes a single child and positions it
                   // in the middle of the parent.
-                  child: Container(
-                    //color: Theme.of(context).backgroundColor,
-                    child: Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: ListView.builder(
-                        itemCount: _counter + 1,
-                        itemBuilder: (BuildContext context, int index) {
-                          if (index == 0) {
-                            return buildDateLabel("${today.day}",
-                                "${today.month}", "${today.year}");
-                          } else if (index == _counter) {
-                            return buildAddButton("oe");
-                          }
-                          return buildSouvenirCard(controllers[index - 1]);
-                        },
-                      ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: ListView.builder(
+                      itemCount: _counter + 1,
+                      itemBuilder: (BuildContext context, int index) {
+                        if (index == 0) {
+                          return buildDateLabel("${today.day}",
+                              "${today.month}", "${today.year}");
+                        } else if (index == _counter) {
+                          return buildAddButton("oe");
+                        }
+                        return buildSouvenirCard(controllers[index - 1]);
+                      },
                     ),
                   ),
                 ),
@@ -612,7 +611,7 @@ class HistoryPageState extends State<HistoryPage> {
                         List<String>.from(souv[i]['souvenirs'])));
                   }
                   finalList.add(Padding(
-                      padding: EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(20),
                       child: Text(
                         "Nothing more to see here, try to write every day to see the lenght of this list getting longer",
                         style: Theme.of(context).textTheme.headline6,
