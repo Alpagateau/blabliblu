@@ -1,0 +1,33 @@
+{
+    "enterMoment": "Enter your good moment",
+    "shortDescribe": "Every day, just type 3 good things that happend.",
+    "about": "About",
+    "diary": "Diary",
+    "options": "Settings",
+    "saved": "Saved",
+
+    "nothingToSee": "Nothing more to see here, try to write every day to see the lenght of this list getting longer",
+
+    "momorySettings": "Memory settings",
+    "appSettings": "Application settings",
+    "notifSettings": "Notification settings",
+    "deleteMemory" : "Delete Memory",
+    "resetMemoryLen": "Reset Memory List Lenght",
+    "animSlow": "Animate Slowly",
+    "showMemContentDebug": "Show Memory Content (Debug)",
+    "sendNotif": "Send Notifications",
+
+    "helloWorld": "Hello World!",
+    "one_thankYou": "\n    Hi, thanks for using this app! It's a joy to know that my app can be useful to someone. \n",
+    "whyDisApp" : "Why this app ?",
+    "two_whydisapp": "\n    This application was created to help people who feel bad to get better. The idea came from an advice given by a friend when I was feeling bad. She told me to write down every night three things that made me smile during the day. After doing this for about two months, I decided to create this application to help people apply this advice. It also served as my first project to learn how to code applications for the general public. \n",
+    "howItWorks" : "How does it work ?",
+    "three_howworks": "\n    Every day, you'll receive a notification to remind you to write down the things that made you smile. Only one notification per day is sent. (you can disable them in the settings). When you enter information in the fields provided, the content is saved in a file of your own on your phone. Nothing is sent to anyone. Everything happens on your phone, in private. When you open the Diary, the file is opened and displayed in a convenient way. ",
+    "tips" : "Some tips",
+    "four_tips": "\n    So, from my view, you sould try to be as precise as possible while writing, it will make the text longer and may force you to use multiple cells, at the end, when you'll look back at it, it would seems like u did more work !!",
+    "goodThings" : "Three good things ?",
+    "five_goodThings" : "\n    The \"3 good things\" principle is an idea that allows us to focus on the positive. It has been used in particular for health care workers in order to combat possible depression",
+    "sources" : "Sources : ",
+    "credits" : "Credits",
+    "t_credits": "\n    The code was mainly made by Martin Nadaud (Alpagateau), but helped by the contributors on github. The icon and background were made by Marie Perrier (@art_with_marie)"
+}

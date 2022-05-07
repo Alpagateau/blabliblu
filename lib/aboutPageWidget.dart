@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //TODO continues the about page
 
@@ -15,16 +16,15 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String a = "hello";
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
-        appBar: AppBar(title: const Text("About")),
+        appBar: AppBar(title: Text(AppLocalizations.of(context)!.about)),
         body: Padding(
           padding: const EdgeInsets.all(10),
           child: ListView(
             children: [
               Text(
-                "Hello world",
+                AppLocalizations.of(context)!.helloWorld,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
@@ -32,7 +32,7 @@ class AboutPage extends StatelessWidget {
                 ),
               ),
               Text(
-                "\n    Hi, thanks for using this app! It's a joy to know that my app can be useful to someone. \n",
+                AppLocalizations.of(context)!.one_thankYou,
                 style: TextStyle(
                   fontSize: 18,
                   wordSpacing: 5,
@@ -43,7 +43,7 @@ class AboutPage extends StatelessWidget {
               ),
               const Divider(),
               Text(
-                "Why this app ?",
+                AppLocalizations.of(context)!.whyDisApp,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
@@ -51,7 +51,7 @@ class AboutPage extends StatelessWidget {
                 ),
               ),
               Text(
-                "\n    This application was created to help people who feel bad to get better. The idea came from an advice given by a friend when I was feeling bad. She told me to write down every night three things that made me smile during the day. After doing this for about two months, I decided to create this application to help people apply this advice. It also served as my first project to learn how to code applications for the general public. \n",
+                AppLocalizations.of(context)!.two_whydisapp,
                 style: TextStyle(
                   fontSize: 18,
                   wordSpacing: 5,
@@ -62,7 +62,7 @@ class AboutPage extends StatelessWidget {
               ),
               const Divider(),
               Text(
-                "How does it work ?",
+                AppLocalizations.of(context)!.howItWorks,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
@@ -70,7 +70,7 @@ class AboutPage extends StatelessWidget {
                 ),
               ),
               Text(
-                "\n    Every day, you'll receive a notification to remind you to write down the things that made you smile. Only one notification per day is sent. (you can disable them in the settings). When you enter information in the fields provided, the content is saved in a file of your own on your phone. Nothing is sent to anyone. Everything happens on your phone, in private. When you open the Diary, the file is opened and displayed in a convenient way. ",
+                AppLocalizations.of(context)!.three_howworks,
                 style: TextStyle(
                   fontSize: 18,
                   wordSpacing: 5,
@@ -92,7 +92,7 @@ class AboutPage extends StatelessWidget {
               ),
               const Divider(),
               Text(
-                "Some tips",
+                AppLocalizations.of(context)!.tips,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
@@ -100,7 +100,7 @@ class AboutPage extends StatelessWidget {
                 ),
               ),
               Text(
-                "\n    So, from my view, you sould try to be as precise as possible while writing, it will make the text longer and may force you to use multiple cells, at the end, when you'll look back at it, it would seems like u did more work !!",
+                AppLocalizations.of(context)!.four_tips,
                 style: TextStyle(
                   fontSize: 18,
                   wordSpacing: 5,
@@ -111,7 +111,7 @@ class AboutPage extends StatelessWidget {
               ),
               const Divider(),
               Text(
-                "Three good things ?",
+                AppLocalizations.of(context)!.goodThings,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
@@ -119,7 +119,7 @@ class AboutPage extends StatelessWidget {
                 ),
               ),
               Text(
-                "\n    The \"3 good things\" principle is an idea that allows us to focus on the positive. It has been used in particular for health care workers in order to combat possible depression",
+                AppLocalizations.of(context)!.five_goodThings,
                 style: TextStyle(
                   fontSize: 18,
                   wordSpacing: 5,
@@ -129,7 +129,7 @@ class AboutPage extends StatelessWidget {
                 textAlign: TextAlign.justify,
               ),
               Text(
-                "Sources : ",
+                AppLocalizations.of(context)!.sources,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 22,
@@ -162,7 +162,7 @@ class AboutPage extends StatelessWidget {
               ),
               const Divider(),
               Text(
-                "Credits",
+                AppLocalizations.of(context)!.credits,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 25,
@@ -170,7 +170,7 @@ class AboutPage extends StatelessWidget {
                 ),
               ),
               Text(
-                "\n    The code was mainly made by Martin Nadaud (Alpagateau), but helped by the contributors on github. The icon and background were made by Marie Perrier (@art_with_marie)",
+                AppLocalizations.of(context)!.t_credits,
                 style: TextStyle(
                   fontSize: 18,
                   wordSpacing: 5,

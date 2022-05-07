@@ -10,13 +10,15 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'aboutPageWidget.dart';
 import 'memorySaving.dart';
 import 'souvenir.dart';
 import 'api/notification_push.dart';
-import 'substringFinder.dart';
 import 'themes.dart' as themes;
+import 'historyPage.dart';
 
 //TODO save method should merge double saves
 //TODO Notifs still dont work (Myb try a free online service?)
@@ -44,6 +46,7 @@ void main() {
         ),
       ],
       debug: true);
+
   runApp(const MeApp());
 }
 
@@ -54,10 +57,24 @@ class MeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Blabliblu',
+      theme: themes.MainTheme,
+      darkTheme: themes.DarkTheme,
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('en', ''), // English, no country code
+        Locale('fr', ''), // Spanish, no country code
+      ],
+      home: MyHomePage(
         title: 'Blabliblu',
-        theme: themes.MainTheme,
-        darkTheme: themes.DarkTheme,
-        home: MyHomePage(title: 'Blabliblu', storage: CounterStorage()));
+        storage: CounterStorage(),
+      ),
+    );
   }
 }
 
@@ -211,7 +228,8 @@ class _MyHomePageState extends State<MyHomePage>
       showDialog(
           context: context,
           builder: (context) {
-            String value = showContent ? message : "Saved";
+            String value =
+                showContent ? message : AppLocalizations.of(context)!.saved;
             return AlertDialog(
               content: Text(value),
               backgroundColor: Theme.of(context).backgroundColor,
@@ -245,7 +263,7 @@ class _MyHomePageState extends State<MyHomePage>
               children: <Widget>[
                 Center(
                   child: ((Theme.of(context).backgroundColor == Colors.white)
-                      ? Image.asset("assets/images/icon512.png")
+                      ? Image.asset("assets/images/shamBG.png")
                       : null),
                 ),
                 Center(
@@ -318,7 +336,7 @@ class _MyHomePageState extends State<MyHomePage>
                       children: <Widget>[
                         Text("Blabliblu",
                             style: Theme.of(context).textTheme.headline1),
-                        Text("Every day, just type 3 good things that happend.",
+                        Text(AppLocalizations.of(context)!.shortDescribe,
                             style: Theme.of(context).textTheme.headline2),
                       ],
                     ),
@@ -329,7 +347,7 @@ class _MyHomePageState extends State<MyHomePage>
                       color: Theme.of(context).textTheme.subtitle2?.color,
                     ),
                     title: Text(
-                      "About",
+                      AppLocalizations.of(context)!.about,
                       style: Theme.of(context).textTheme.subtitle2,
                     ),
                     onTap: () {
@@ -347,7 +365,7 @@ class _MyHomePageState extends State<MyHomePage>
                       color: Theme.of(context).textTheme.subtitle2?.color,
                     ),
                     title: Text(
-                      "Diary",
+                      AppLocalizations.of(context)!.diary,
                       style: Theme.of(context).textTheme.subtitle2,
                     ),
                     onTap: () {
@@ -367,7 +385,7 @@ class _MyHomePageState extends State<MyHomePage>
                       color: Theme.of(context).textTheme.subtitle2?.color,
                     ),
                     title: Text(
-                      "Options",
+                      AppLocalizations.of(context)!.options,
                       style: Theme.of(context).textTheme.subtitle2,
                     ),
                     onTap: () {
@@ -407,8 +425,8 @@ class _MyHomePageState extends State<MyHomePage>
             controller: controller,
             maxLines: null,
             style: Theme.of(context).textTheme.headline5,
-            decoration: const InputDecoration(
-              hintText: "Enter your good moment",
+            decoration: InputDecoration(
+              hintText: AppLocalizations.of(context)!.enterMoment,
             ),
           ),
         ),
@@ -450,151 +468,6 @@ class _MyHomePageState extends State<MyHomePage>
 }
 
 // ignore: must_be_immutable
-class HistoryPage extends StatefulWidget {
-  HistoryPage(
-      {Key? key,
-      required this.storage,
-      required this.fileStor,
-      required this.context})
-      : super(key: key);
-
-  List<String> getValues() {
-    return [""];
-  }
-
-  CounterStorage storage;
-  String fileStor;
-  BuildContext context;
-  Widget buildSouvenirCard(int D, int M, int Y, List<String> souv) {
-    List<Widget> cards = [
-      Text(
-        "$D/$M/$Y",
-        style: Theme.of(context).textTheme.headline4,
-      )
-    ];
-    for (int i = 0; i < souv.length; i++) {
-      Widget card = Card(
-        elevation: 1,
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Text(
-              souv[i],
-              style: Theme.of(context).textTheme.headline5,
-            ),
-          ),
-        ),
-      );
-      cards.add(card);
-    }
-    return Card(
-        elevation: 0.5,
-        color: Theme.of(context).focusColor,
-        child: Padding(
-            padding: const EdgeInsets.fromLTRB(8, 2, 8, 2),
-            child: Center(child: Column(children: cards))));
-  }
-
-  @override
-  HistoryPageState createState() => HistoryPageState();
-}
-
-class HistoryPageState extends State<HistoryPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
-        appBar: AppBar(
-          title: Text(
-            "Diary",
-            style: Theme.of(context).textTheme.headline2,
-          ),
-        ),
-        body: ListView(
-          children: [
-            FutureBuilder<String>(
-              future: widget.storage
-                  .readCounter(), // a previously-obtained Future<String> or null
-              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                //List<Widget> days;
-                List<Widget> children;
-                if (snapshot.hasData) {
-                  final String jsond = widget.fileStor + "]}";
-
-                  final parsedJson = jsonDecode(jsond);
-
-                  final b = Memoir.fromJson(parsedJson);
-
-                  final souv = b.memo.sublist(1);
-
-                  List<Widget> finalList = [];
-                  for (int i = 0; i < souv.length; i++) {
-                    finalList.add(widget.buildSouvenirCard(
-                        souv[i]['Date'][0],
-                        souv[i]['Date'][1],
-                        souv[i]['Date'][2],
-                        List<String>.from(souv[i]['souvenirs'])));
-                  }
-                  finalList.add(Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Text(
-                        "Nothing more to see here, try to write every day to see the lenght of this list getting longer",
-                        style: Theme.of(context).textTheme.headline6,
-                      )));
-                  children = <Widget>[
-                    Icon(
-                      Icons.check_circle_outline,
-                      color: Theme.of(context).primaryColor,
-                      size: 60,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 16),
-                      child: Center(
-                          child: ListBody(
-                        children: finalList,
-                      )),
-                    ),
-                  ];
-                } else if (snapshot.hasError) {
-                  children = <Widget>[
-                    const Icon(
-                      Icons.error_outline,
-                      color: Colors.red,
-                      size: 60,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 16),
-                      child: Text('Error: ${snapshot.error}'),
-                    )
-                  ];
-                } else {
-                  children = const <Widget>[
-                    SizedBox(
-                      child: CircularProgressIndicator(),
-                      width: 60,
-                      height: 60,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 16),
-                      child: Text('Awaiting result...'),
-                    )
-                  ];
-                }
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: children,
-                  ),
-                );
-              },
-            ),
-          ],
-        ));
-  }
-}
-
-// ignore: must_be_immutable
 class SettingsPage extends StatefulWidget {
   SettingsPage({Key? key, required this.storage, required this.home})
       : super(key: key);
@@ -612,14 +485,15 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
-          title: Text("History", style: Theme.of(context).textTheme.headline2),
+          title: Text(AppLocalizations.of(context)!.diary,
+              style: Theme.of(context).textTheme.headline2),
         ),
         body: ListView(
           children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.fromLTRB(4, 16, 4, 0),
               child: Text(
-                "Memory settings",
+                AppLocalizations.of(context)!.momorySettings,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.grey,
@@ -635,23 +509,23 @@ class _SettingsPageState extends State<SettingsPage> {
                   // ignore: avoid_print
                   print('or');
                 },
-                child: const Text(
-                  "Delete Memory",
+                child: Text(
+                  AppLocalizations.of(context)!.deleteMemory,
                   style: TextStyle(fontSize: 18),
                 )),
             TextButton(
                 onPressed: () {
                   widget.home.resetCounter();
                 },
-                child: const Text(
-                  "Reset Memory List Lenght",
+                child: Text(
+                  AppLocalizations.of(context)!.resetMemoryLen,
                   style: TextStyle(fontSize: 18),
                 )),
             //Notifs
-            const Padding(
+            Padding(
               padding: EdgeInsets.fromLTRB(4, 16, 4, 0),
               child: Text(
-                "Application settings",
+                AppLocalizations.of(context)!.appSettings,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.grey,
@@ -662,7 +536,7 @@ class _SettingsPageState extends State<SettingsPage> {
             const Divider(),
             CheckboxListTile(
               title: Text(
-                'Animate Slowly',
+                AppLocalizations.of(context)!.animSlow,
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               value: timeDilation != 1.0,
@@ -678,7 +552,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             CheckboxListTile(
               title: Text(
-                'Show Memory Content (Debug)',
+                AppLocalizations.of(context)!.showMemContentDebug,
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               value: widget.home.showContent,
@@ -695,10 +569,10 @@ class _SettingsPageState extends State<SettingsPage> {
                 color: Theme.of(context).textTheme.subtitle1?.color,
               ),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.fromLTRB(4, 16, 4, 0),
               child: Text(
-                "Application settings",
+                AppLocalizations.of(context)!.notifSettings,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.grey,
@@ -710,7 +584,7 @@ class _SettingsPageState extends State<SettingsPage> {
             const Divider(),
             CheckboxListTile(
               title: Text(
-                'Send Notifs',
+                AppLocalizations.of(context)!.sendNotif,
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               value: widget.home.schedulNotifs,

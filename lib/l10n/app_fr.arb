@@ -1,0 +1,33 @@
+{
+    "enterMoment": "Entrez un bon moment ici",
+    "shortDescribe": "Chaque jours, ecrivez 3 choses agreables",
+    "about": "A propos",
+    "diary": "Journal",
+    "options": "Options",
+    "saved": "Sauvgardé",
+
+    "nothingToSee": "Rien de plus ici, essayez de noter de bons souvenirs tous les jours pour voir cette liste s'agrandire",
+
+    "momorySettings": "Parametres de stockage",
+    "appSettings": "Parametres de l'application",
+    "notifSettings": "Parametres de notification",
+    "deleteMemory" : "Vider la memoire",
+    "resetMemoryLen": "Reset la longueure de la liste de souvenirs",
+    "animSlow": "Animer lentement",
+    "showMemContentDebug": "Montrer le contenu de la memoire (Debug)",
+    "sendNotif": "Envoyer des notifications",
+
+    "helloWorld": "Bonjour Monde !",
+    "one_thankYou": "\n    Bonjour, merci d'avoir utilisé cette application ! C'est une joie de savoir que mon application peut être utile à quelqu'un. \n",
+    "whyDisApp" : "Pourquoi cette app ?",
+    "two_whydisapp": "\n    Cette application a été créée pour aider les personnes qui se sentent mal à aller mieux. L'idée est venue d'un conseil donné par une amie lorsque je me sentais mal. Elle m'a dit d'écrire chaque soir trois choses qui m'avaient fait sourire pendant la journée. Après avoir fait cela pendant environ deux mois, j'ai décidé de créer cette application pour aider les gens à appliquer ce conseil. C'était aussi mon premier projet pour apprendre à coder des applications pour le grand public. \n",
+    "howItWorks" : "Comment fonctionne-t-elle ?",
+    "three_howworks": "\n    Chaque jour, vous recevrez une notification pour vous rappeler de noter les choses qui vous ont fait sourire. Une seule notification par jour est envoyée. (vous pouvez les désactiver dans les paramètres). Lorsque vous saisissez des informations dans les champs prévus à cet effet, le contenu est enregistré dans un fichier qui vous est propre sur votre téléphone. Rien n'est envoyé à qui que ce soit. Tout se passe sur votre téléphone, en privé. Lorsque vous ouvrez le Journal, le fichier est ouvert et affiché de manière pratique. ",
+    "tips" : "Quelques conseils",
+    "four_tips": "\n    Donc, de mon point de vue, vous devriez essayer d'être aussi précis que possible pendant que vous écrivez, cela rendra le texte plus long et peut vous obliger à utiliser plusieurs cellules, à la fin, quand vous regarderez en arrière, vous aurez l'impression d'avoir fait plus de travail !!! ",
+    "goodThings" : "3 bonnes choses ?",
+    "five_goodThings" : "\n    Le principe des \"3 bonnes choses\" est une idée qui nous permet de nous concentrer sur le positif. Il a été utilisé en particulier pour les travailleurs de la santé afin de lutter contre une éventuelle dépression.",
+    "sources" : "Sources : ",
+    "credits" : "Credits",
+    "t_credits": "\n    Le code a été principalement réalisé par Martin Nadaud (Alpagateau), mais aidé par les contributeurs sur github. L'icône et le fond ont été réalisés par Marie Perrier (@art_with_marie)"
+}
