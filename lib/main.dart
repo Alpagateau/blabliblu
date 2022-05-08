@@ -12,6 +12,7 @@ import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'aboutPageWidget.dart';
 import 'memorySaving.dart';
@@ -111,6 +112,7 @@ class _MyHomePageState extends State<MyHomePage>
       // called again, and so nothing would appear to happen.
       _counter++;
       controllers.add(TextEditingController());
+      controllers.last.addListener(textEditListener);
     });
   }
 
@@ -121,13 +123,44 @@ class _MyHomePageState extends State<MyHomePage>
     });
   }
 
+  bool showImageButton = false;
+  int selectedField = -1;
+
+  void showImageOption(bool showI, int index) {
+    setState(() {
+      showImageButton = showI;
+      selectedField = index;
+    });
+  }
+
+  Future<String> getImagePath() async {
+    final XFile? image =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    //print("<#{Img}#>" + image!.path);
+    controllers[selectedField].text = "<#{Img}#>" + image!.path;
+    //textEditListener();
+    return "<#{Img}#>" + image.path;
+  }
+
+  bool isThisImage(String content) {
+    if (content.length > 9) {
+      if (content.substring(0, 9) == "<#{Img}#>") {
+        print("This is an Image");
+        return true;
+      }
+    }
+    return false;
+  }
+
   @override
   void initState() {
     super.initState();
 
     controller = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 500));
-
+    for (int i = 0; i < controllers.length; i++) {
+      controllers[i].addListener(textEditListener);
+    }
     asyncLoader();
   }
 
@@ -239,6 +272,19 @@ class _MyHomePageState extends State<MyHomePage>
     });
   }
 
+  void textEditListener() {
+    setState(() {
+      if (selectedField > -1) {
+        print("###########################################");
+        if (controllers[selectedField].text.length > 9) {
+          if (controllers[selectedField].text.substring(0, 9) == "<#{Img}#>") {
+            print("This is an Image");
+          }
+        }
+      }
+    });
+  }
+
   late AnimationController controller;
 
   @override
@@ -280,7 +326,11 @@ class _MyHomePageState extends State<MyHomePage>
                         } else if (index == _counter) {
                           return buildAddButton("oe");
                         }
-                        return buildSouvenirCard(controllers[index - 1]);
+                        return buildSouvenirCard(
+                          controllers[index - 1],
+                          index - 1,
+                          isThisImage(controllers[index - 1].text),
+                        );
                       },
                     ),
                   ),
@@ -315,6 +365,34 @@ class _MyHomePageState extends State<MyHomePage>
             )
           ];
         }
+
+        //set floating button List
+        List<Widget> floatingButtons() {
+          final buttons = [
+            Container(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                child: FloatingActionButton(
+                  onPressed: showWhatIsInside,
+                  tooltip: 'Save',
+                  child: const Icon(Icons.check),
+                ),
+              ),
+            ),
+            Container(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                child: FloatingActionButton(
+                  onPressed: getImagePath,
+                  tooltip: 'Image',
+                  child: const Icon(Icons.image),
+                ),
+              ),
+            )
+          ];
+          return showImageButton ? buttons : [buttons[0]];
+        }
+
         return Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
           appBar: AppBar(
@@ -403,17 +481,20 @@ class _MyHomePageState extends State<MyHomePage>
             ),
           ),
           body: children[0], //normalement c'est bon
-          floatingActionButton: FloatingActionButton(
-            onPressed: showWhatIsInside,
-            tooltip: 'Increment',
-            child: const Icon(Icons.check),
-          ), // This trailing comma makes auto-formatting nicer for build methods.
+          floatingActionButton: Container(
+            child: Column(
+              verticalDirection: VerticalDirection.up,
+              children: floatingButtons(),
+            ),
+          ),
+          // This trailing comma makes auto-formatting nicer for build methods.
         );
       },
     );
   }
 
-  Widget buildSouvenirCard(TextEditingController controller) {
+  Widget buildSouvenirCard(
+      TextEditingController controller, int index, bool isImage) {
     return Card(
       elevation: 3.0,
       color: Theme.of(context).cardTheme.color,
@@ -421,13 +502,41 @@ class _MyHomePageState extends State<MyHomePage>
         color: Theme.of(context).cardColor,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(6, 2, 0, 2),
-          child: TextField(
-            controller: controller,
-            maxLines: null,
-            style: Theme.of(context).textTheme.headline5,
-            decoration: InputDecoration(
-              hintText: AppLocalizations.of(context)!.enterMoment,
-            ),
+          child: Column(
+            children: [
+              Visibility(
+                visible: !isImage,
+                child: TextField(
+                  controller: controller,
+                  maxLines: null,
+                  onTap: () {
+                    showImageOption(true, index);
+                  },
+                  onChanged: (String value) {
+                    print("###########################################");
+                    if (value.length > 9) {
+                      if (value.substring(0, 9) == "<#{Img}#>") {
+                        print("This is an Image");
+                      }
+                    }
+                  },
+                  style: Theme.of(context).textTheme.headline5,
+                  decoration: InputDecoration(
+                    hintText: AppLocalizations.of(context)!.enterMoment,
+                  ),
+                ),
+              ),
+              Visibility(
+                visible: isImage,
+                child: isImage
+                    ? Image.file(
+                        File(
+                          controllers[index].text.substring(9),
+                        ),
+                      )
+                    : Text(""),
+              )
+            ],
           ),
         ),
       ),

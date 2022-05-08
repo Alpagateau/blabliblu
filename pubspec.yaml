@@ -41,6 +41,7 @@ dependencies:
   flutter_localizations: # Add this line
     sdk: flutter         # Add this line
   intl: ^0.17.0
+  image_picker: ^0.8.5
 
 dev_dependencies:
   flutter_test:
