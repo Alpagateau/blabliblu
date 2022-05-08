@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'package:flutter_share/flutter_share.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import "package:path_provider/path_provider.dart";
 import 'memorySaving.dart';
 import 'souvenir.dart';
 
@@ -42,16 +44,34 @@ class HistoryPage extends StatefulWidget {
       );
       cards.add(card);
     }
-    return Card(
-        elevation: 0.5,
-        color: Theme.of(context).focusColor,
-        child: Padding(
-            padding: const EdgeInsets.fromLTRB(8, 2, 8, 2),
-            child: Center(child: Column(children: cards))));
+    return GestureDetector(
+        onDoubleTap: () {
+          String message = "Here's some nice things I did on $D/$M/$Y";
+          for (int i = 0; i < souv.length; i++) {
+            message += "\n -";
+            message += souv[i];
+          }
+          share(message);
+        },
+        child: Card(
+            elevation: 0.5,
+            color: Theme.of(context).focusColor,
+            child: Padding(
+                padding: const EdgeInsets.fromLTRB(8, 2, 8, 2),
+                child: Center(child: Column(children: cards)))));
   }
 
   @override
   HistoryPageState createState() => HistoryPageState();
+}
+
+Future<void> share(String text) async {
+  await FlutterShare.share(
+      title: 'Blabliblu Moment',
+      text: text,
+      linkUrl:
+          'https://play.google.com/store/apps/details?id=com.alpagames.blabliblu',
+      chooserTitle: 'Example Chooser Title');
 }
 
 class HistoryPageState extends State<HistoryPage> {
@@ -143,7 +163,14 @@ class HistoryPageState extends State<HistoryPage> {
                   ),
                 );
               },
-            ),
+            ), /*
+            TextButton(
+                onPressed: () {
+                  print("Hello world!");
+                  share(
+                      "Today I was in the park with my friend, and it was great");
+                },
+                child: Text("Hello world!"))*/
           ],
         ));
   }
