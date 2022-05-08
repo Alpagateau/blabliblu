@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter_share/flutter_share.dart';
 
 import 'package:flutter/material.dart';
@@ -30,14 +31,34 @@ class HistoryPage extends StatefulWidget {
       )
     ];
     for (int i = 0; i < souv.length; i++) {
+      bool isImage = false;
+      if (souv[i].length > 9) {
+        isImage = (souv[i].substring(0, 9) == "<#{Img}#>");
+      }
+
       Widget card = Card(
         elevation: 1,
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(10),
-            child: Text(
-              souv[i],
-              style: Theme.of(context).textTheme.headline5,
+            child: Column(
+              children: [
+                Visibility(
+                  visible: !isImage,
+                  child: Text(
+                    souv[i],
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                ),
+                Visibility(
+                  visible: isImage,
+                  child: isImage
+                      ? Image.file(
+                          File(souv[i].substring(9)),
+                        )
+                      : Text(""),
+                ),
+              ],
             ),
           ),
         ),
