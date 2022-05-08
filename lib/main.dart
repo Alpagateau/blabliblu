@@ -137,7 +137,10 @@ class _MyHomePageState extends State<MyHomePage>
     final XFile? image =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     //print("<#{Img}#>" + image!.path);
-    controllers[selectedField].text = "<#{Img}#>" + image!.path;
+    if (image == null) {
+      return "";
+    }
+    controllers[selectedField].text = "<#{Img}#>" + image.path;
     //textEditListener();
     return "<#{Img}#>" + image.path;
   }
@@ -373,6 +376,7 @@ class _MyHomePageState extends State<MyHomePage>
               child: Padding(
                 padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                 child: FloatingActionButton(
+                  heroTag: "save",
                   onPressed: showWhatIsInside,
                   tooltip: 'Save',
                   child: const Icon(Icons.check),
@@ -384,6 +388,7 @@ class _MyHomePageState extends State<MyHomePage>
                 padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                 child: FloatingActionButton(
                   onPressed: getImagePath,
+                  heroTag: "image",
                   tooltip: 'Image',
                   child: const Icon(Icons.image),
                 ),
