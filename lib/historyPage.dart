@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_share/flutter_share.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -52,6 +53,14 @@ class HistoryPage extends StatefulWidget {
 
   @override
   HistoryPageState createState() => HistoryPageState();
+}
+
+Future<void> share() async {
+  await FlutterShare.share(
+      title: 'Example share',
+      text: 'Example share text',
+      linkUrl: 'https://flutter.dev/',
+      chooserTitle: 'Example Chooser Title');
 }
 
 class HistoryPageState extends State<HistoryPage> {
@@ -144,6 +153,7 @@ class HistoryPageState extends State<HistoryPage> {
                 );
               },
             ),
+            Text("Text"),
           ],
         ));
   }
