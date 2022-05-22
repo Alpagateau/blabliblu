@@ -6,6 +6,7 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:blabliblu/loadingIcon.dart';
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart' as p;
 
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
@@ -140,15 +141,23 @@ class _MyHomePageState extends State<MyHomePage>
     if (image == null) {
       return "";
     }
-    controllers[selectedField].text = "<#{Img}#>" + image.path;
-    //textEditListener();
+    final directory = await getApplicationDocumentsDirectory();
+    final String path = directory.path;
+
+    final fileName = p.basename(image.path);
+    final fPath = '$path/$fileName';
+    image.saveTo('$path/$fileName');
+
+    controllers[selectedField].text = "<#{Img}#>" + fPath;
+    textEditListener();
     return "<#{Img}#>" + image.path;
   }
 
   bool isThisImage(String content) {
     if (content.length > 9) {
       if (content.substring(0, 9) == "<#{Img}#>") {
-        print("This is an Image");
+        print(content);
+        print("This is an Image 1");
         return true;
       }
     }
@@ -276,16 +285,7 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   void textEditListener() {
-    setState(() {
-      if (selectedField > -1) {
-        print("###########################################");
-        if (controllers[selectedField].text.length > 9) {
-          if (controllers[selectedField].text.substring(0, 9) == "<#{Img}#>") {
-            print("This is an Image");
-          }
-        }
-      }
-    });
+    setState(() {});
   }
 
   late AnimationController controller;
@@ -521,7 +521,8 @@ class _MyHomePageState extends State<MyHomePage>
                     print("###########################################");
                     if (value.length > 9) {
                       if (value.substring(0, 9) == "<#{Img}#>") {
-                        print("This is an Image");
+                        print(value);
+                        print("This is an Image 3");
                       }
                     }
                   },
