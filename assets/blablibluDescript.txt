@@ -1,0 +1,33 @@
+Blabliblu est simple journal de gratitude, avec comme idée principale, le respect de votre vie privée.
+
+Améliorez votre bien-être en pratiquant chaque jour un petit exercice: visualiser et noter trois (ou plus) événements positifs de la journée.
+
+L'idée est venue d'un conseil donné par une amie lorsque je me sentais mal. Elle m'a dit d'écrire chaque soir trois choses qui m'avaient fait sourire pendant la journée. Après avoir fait cette expérience, j'ai ensuite décidé de créer cette application pour aider les gens à appliquer ce conseil.
+
+En prenant l'habitude de se focaliser sur le positif, vous apprécierez plus les moments agréables.
+Cette pratique vous incitera à faire plus attention aux événements  positifs du quotidien et à vous y engager plus pleinement. Ainsi,vous apprendrez à les reconnaître, et les apprécier plus quand ils se produiront. Plus tard, quand vous vous les remémorerez, vous pourrez les apprécier à nouveau. Cela n’est possible que si vous prenez l’habitude de les détecter.
+
+Cette application a été beaucoup inspiré par le conseil de proches, mais elle s'appuie tout de meme sur des études, comme celles-ci :
+- https://happyproject.in/three-good-things/
+- https://www.youtube.com/watch?v=hZ4aT_RVHCs
+- https://www.youtube.com/watch?v=ZOGAp9dw8Ac
+
+CE QUE VOUS TROUVEREZ:
+* Une application simple, basée sur plusieurs études
+* Un espace sûr, sans pubs, et intime pour vous concentrer sur les bons moments de 
+votre journée.
+* Une section "Journal" où vous pourrez relirez vos bons moments passés pour
+vous les remémorerez. 
+* Un journal quotidien facile a tenir
+* Ajoutez des photos a vos souvenirs
+* Des rappels pour vous aider a prendre l'habitude
+* Envoyez vos bon moments d'un simple double clique : partagez votre gratitude avec vos amis et votre famille.
+* Mode nuit pour améliorer votre sommeil. Vous pouvez utiliser Blabliblu sans etre ébloui par votre téléphone
+
+Vous pourrez être surpris de découvrir que, même dans les jours remplis d'anxiété et de tristesse, vous serrez capable de trouver trois points positifs. Et c'est cette capacité qui vous aidera a améliorer votre bien-être.
+
+
+Merci de prendre soin de vous et de pratiquer la gratitude. Nous espérons que ce journal du bien-être vous aidera à comprendre de manière tangible que le bonheur n’est pas si loin, et que vous y avez droit aussi. 
+
+VOTRE INTIMITÉ :
+Votre journal de bien-être est à vous et à vous seul. Nous ne stockons pas la moindre de vos données, et nous ne vous demandons pas de vous identifier ou de créer un compte. Nous avons conçu ce journal de gratitude en tenant compte de votre vie privée.

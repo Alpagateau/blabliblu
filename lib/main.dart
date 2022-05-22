@@ -276,8 +276,18 @@ class _MyHomePageState extends State<MyHomePage>
             String value =
                 showContent ? message : AppLocalizations.of(context)!.saved;
             return AlertDialog(
-              content: Text(value),
               backgroundColor: Theme.of(context).backgroundColor,
+              content: Text(
+                value,
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("OK"),
+                ),
+              ],
             );
             // TODO Style alerts
           });
@@ -500,52 +510,80 @@ class _MyHomePageState extends State<MyHomePage>
 
   Widget buildSouvenirCard(
       TextEditingController controller, int index, bool isImage) {
-    return Card(
-      elevation: 3.0,
-      color: Theme.of(context).cardTheme.color,
-      child: Container(
-        color: Theme.of(context).cardColor,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(6, 2, 0, 2),
-          child: Column(
-            children: [
-              Visibility(
-                visible: !isImage,
-                child: TextField(
-                  controller: controller,
-                  maxLines: null,
-                  onTap: () {
-                    showImageOption(true, index);
-                  },
-                  onChanged: (String value) {
-                    print("###########################################");
-                    if (value.length > 9) {
-                      if (value.substring(0, 9) == "<#{Img}#>") {
-                        print(value);
-                        print("This is an Image 3");
-                      }
-                    }
-                  },
-                  style: Theme.of(context).textTheme.headline5,
-                  decoration: InputDecoration(
-                    hintText: AppLocalizations.of(context)!.enterMoment,
+    return Stack(
+      children: [
+        Card(
+          elevation: 3.0,
+          color: Theme.of(context).cardTheme.color,
+          child: Container(
+            color: Theme.of(context).cardColor,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(6, 2, 0, 2),
+              child: Column(
+                children: [
+                  Visibility(
+                    visible: !isImage,
+                    child: TextField(
+                      controller: controller,
+                      maxLines: null,
+                      onTap: () {
+                        showImageOption(true, index);
+                      },
+                      onChanged: (String value) {
+                        print("###########################################");
+                        if (value.length > 9) {
+                          if (value.substring(0, 9) == "<#{Img}#>") {
+                            print("This is an Image");
+                          }
+                        }
+                      },
+                      style: Theme.of(context).textTheme.headline5,
+                      decoration: InputDecoration(
+                        hintText: AppLocalizations.of(context)!.enterMoment,
+                      ),
+                    ),
                   ),
-                ),
+                  Visibility(
+                    visible: isImage,
+                    child: isImage
+                        ? Image.file(
+                            File(
+                              controllers[index].text.substring(9),
+                            ),
+                          )
+                        : Text(""),
+                  ),
+                ],
               ),
-              Visibility(
-                visible: isImage,
-                child: isImage
-                    ? Image.file(
-                        File(
-                          controllers[index].text.substring(9),
-                        ),
-                      )
-                    : Text(""),
-              )
-            ],
+            ),
           ),
         ),
-      ),
+        Container(
+          alignment: AlignmentDirectional.bottomEnd,
+          child: Visibility(
+            visible: isImage,
+            child: FloatingActionButton.small(
+              onPressed: () {
+                final dir = Directory(
+                  controllers[index].text.substring(9),
+                );
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(content: Text("Deleted"));
+                    });
+                dir.deleteSync(recursive: true);
+                controllers[index].text = "";
+              },
+              backgroundColor: Colors.red,
+              heroTag: "delete" + index.toString(),
+              child: const Icon(
+                Icons.delete,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
