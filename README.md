@@ -23,3 +23,7 @@ For the moments, notifications only works when the app is running, even in the b
  https://www.youtube.com/watch?v=hZ4aT_RVHCs
  https://happyproject.in/three-good-things/
  https://www.youtube.com/watch?v=ZOGAp9dw8Ac
+ 
+ ## Play Store
+ You can now find Blabliblu on the Play Store
+ https://play.google.com/store/apps/details?id=com.alpagames.blabliblu
