@@ -59,8 +59,3 @@ Future<void> createReminderNotification(int d, int? h, int? m) async {
 Future<void> cancelScheduledNotifications() async {
   await AwesomeNotifications().cancelAllSchedules();
 }
-
-void sheduleByClock() {
-  print("Hellow world");
-  //TODO use alarm clock as the way to set up notifications
-}

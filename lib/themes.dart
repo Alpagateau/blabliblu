@@ -80,6 +80,7 @@ final DarkTheme = ThemeData(
   cardColor: Colors.grey[800],
   focusColor: Colors.grey[800],
   cardTheme: CardTheme(
+    color: Colors.blueGrey[900],
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(32.0),
       side: BorderSide(color: Color.fromRGBO(12, 12, 12, 1.0), width: 1.2),
