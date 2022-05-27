@@ -77,6 +77,7 @@ final MainTheme = ThemeData(
 final DarkTheme = ThemeData(
   primarySwatch: colorCustom,
   backgroundColor: Colors.grey[900],
+  scaffoldBackgroundColor: Colors.grey[900],
   cardColor: Colors.grey[800],
   focusColor: Colors.grey[800],
   cardTheme: CardTheme(

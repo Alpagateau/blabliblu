@@ -461,10 +461,12 @@ class _MyHomePageState extends State<MyHomePage>
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => SettingsPage(
+                                builder: (context) => Theme(
+                                    data: themes.MainTheme,
+                                    child: SettingsPage(
                                       storage: widget.storage,
                                       home: this,
-                                    )));
+                                    ))));
                       },
                     ),
                   ],
