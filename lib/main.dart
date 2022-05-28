@@ -14,6 +14,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:get/get.dart';
 
 import 'aboutPageWidget.dart';
 import 'memorySaving.dart';
@@ -23,7 +24,7 @@ import 'themes.dart' as themes;
 import 'historyPage.dart';
 import 'homePage.dart';
 
-//TODO Notifs still dont work (Myb try a free online service?)
+//TODO Notifs seem to work :?
 //TODO Export data and load data
 //TODO Animations
 
@@ -57,10 +58,11 @@ class MeApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Blabliblu',
       theme: themes.MainTheme,
       darkTheme: themes.DarkTheme,
+      themeMode: ThemeMode.system,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -69,11 +71,11 @@ class MeApp extends StatelessWidget {
       ],
       supportedLocales: const [
         Locale('en', ''), // English, no country code
-        Locale('fr', ''), // Spanish, no country code
+        Locale('fr', ''), // French, no country code
       ],
       home: MyHomePage(
         title: 'Blabliblu',
-        storage: CounterStorage(),
+        storage: CounterStorage()
       ),
     );
   }
