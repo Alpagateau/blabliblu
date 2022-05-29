@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_share/flutter_share.dart';
 
 int createUniqueId() {
   return DateTime.now().millisecondsSinceEpoch.remainder(100000);
@@ -85,4 +87,13 @@ Future<NotificationWeekAndTime?> pickSchedule(
     }
   }
   return null;
+}
+
+Future<void> shareApp(BuildContext context) async {
+  await FlutterShare.share(
+      title: AppLocalizations.of(context)!.shareTitle,
+      text: AppLocalizations.of(context)!.shareMsg,
+      linkUrl:
+          'https://play.google.com/store/apps/details?id=com.alpagames.blabliblu',
+      chooserTitle: 'Example Chooser Title');
 }

@@ -4,7 +4,11 @@
     "about": "About",
     "diary": "Diary",
     "options": "Settings",
+    "share": "Share",
     "saved": "Saved",
+
+    "shareTitle": "Check out this app",
+    "shareMsg": "Blabliblu is a simple gratitude journal to help people in bad mood",
 
     "nothingToSee": "Nothing more to see here, try to write every day to see the lenght of this list getting longer",
 

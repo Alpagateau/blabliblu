@@ -14,7 +14,7 @@ Cette application a été beaucoup inspiré par le conseil de proches, mais elle
 
 CE QUE VOUS TROUVEREZ:
 * Une application simple, basée sur plusieurs études
-* Un espace sûr, sans pubs, et intime pour vous concentrer sur les bons moments de 
+* Un espace sûr, sans pubs, et intime pour vous concentrer sur les bons moments de
 votre journée.
 * Une section "Journal" où vous pourrez relirez vos bons moments passés pour
 vous les remémorerez. 
