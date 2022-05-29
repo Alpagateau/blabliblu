@@ -48,6 +48,7 @@ class _MyHomePageState extends State<MyHomePage>
   bool showContent = false;
   bool schedulNotifs = false;
   int languageSetting = 0;
+  int themeS = 0;
   List<String> PossiblesLanguages = [
     "System's language",
     "English",
@@ -173,6 +174,11 @@ class _MyHomePageState extends State<MyHomePage>
           try {
             languageSetting =
                 value.getInt("langS") != 0 ? value.getInt("langS")! : 0;
+          } catch (e) {
+            print(e);
+          }
+          try {
+            themeS = value.getInt("themeS") != 0 ? value.getInt("themeS")! : 0;
           } catch (e) {
             print(e);
           }
