@@ -47,6 +47,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
               ),
               const Divider(),
+
               TextButton(
                 onPressed: () {
                   widget.storage.writeCounter("{\"Memory\":[{}");
@@ -59,6 +60,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   style: TextStyle(fontSize: 18),
                 ),
               ),
+
               TextButton(
                   onPressed: () {
                     widget.home.resetCounter();
@@ -79,35 +81,9 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ),
               ),
+
               const Divider(),
-              ListTile(
-                leading: Icon(
-                  Icons.language,
-                  color: theme.textTheme.subtitle1?.color,
-                ),
-                title: DropdownButton<String>(
-                  value: widget
-                      .home.PossiblesLanguages[widget.home.languageSetting],
-                  items: widget.home.PossiblesLanguages
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (String? value) {
-                    setState(() {
-                      final choosen =
-                          widget.home.PossiblesLanguages.indexOf(value!);
-                      widget.home.languageSetting = choosen;
-                      SharedPreferences.getInstance().then((value) {
-                        value.setInt("langS", choosen);
-                      });
-                    });
-                  },
-                  elevation: 0,
-                ),
-              ),
+
               CheckboxListTile(
                 title: Text(
                   AppLocalizations.of(context)!.animSlow,
@@ -144,7 +120,6 @@ class _SettingsPageState extends State<SettingsPage> {
                   color: theme.textTheme.subtitle1?.color,
                 ),
               ),
-
               //Dark mode settings
               CheckboxListTile(
                 title: Text(
@@ -174,8 +149,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: CheckboxListTile(
                   title: Text(
                     (widget.home.themeS == 1)
-                        ? AppLocalizations.of(context)!.darkTheme
-                        : AppLocalizations.of(context)!.lightTheme,
+                        ? AppLocalizations.of(context)!.lightTheme
+                        : AppLocalizations.of(context)!.darkTheme,
                     style: theme.textTheme.subtitle1,
                   ),
                   value: _themeMode == ThemeMode.dark,
@@ -198,12 +173,42 @@ class _SettingsPageState extends State<SettingsPage> {
                   },
                   secondary: Icon(
                     _themeMode == ThemeMode.dark
-                        ? Icons.dark_mode
-                        : Icons.light,
+                        ? Icons.light_mode
+                        : Icons.dark_mode,
                     color: theme.textTheme.subtitle1?.color,
                   ),
                 ),
               ),
+
+              ListTile(
+                leading: Icon(
+                  Icons.language,
+                  color: theme.textTheme.subtitle1?.color,
+                ),
+                title: DropdownButton<String>(
+                  value: widget
+                      .home.PossiblesLanguages[widget.home.languageSetting],
+                  items: widget.home.PossiblesLanguages
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String? value) {
+                    setState(() {
+                      final choosen =
+                          widget.home.PossiblesLanguages.indexOf(value!);
+                      widget.home.languageSetting = choosen;
+                      SharedPreferences.getInstance().then((value) {
+                        value.setInt("langS", choosen);
+                      });
+                    });
+                  },
+                  elevation: 0,
+                ),
+              ),
+
               Padding(
                 padding: EdgeInsets.fromLTRB(4, 16, 4, 0),
                 child: Text(
@@ -215,6 +220,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ),
               ),
+
               const Divider(),
               CheckboxListTile(
                 title: Text(
