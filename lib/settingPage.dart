@@ -179,7 +179,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ),
               ),
-
+/*
               ListTile(
                 leading: Icon(
                   Icons.language,
@@ -208,7 +208,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   elevation: 0,
                 ),
               ),
-
+*/
               Padding(
                 padding: EdgeInsets.fromLTRB(4, 16, 4, 0),
                 child: Text(
