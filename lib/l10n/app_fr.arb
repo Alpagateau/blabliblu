@@ -19,6 +19,9 @@
     "resetMemoryLen": "Reset la longueur de la liste de souvenirs",
     "animSlow": "Animer lentement",
     "showMemContentDebug": "Montrer le contenu de la memoire (Debug)",
+    "systemTheme": "J'men branle, thème système",
+    "lightTheme": "Crame moi les yeux",
+    "darkTheme": "Trop dark sasuke en ft",
     "sendNotif": "Envoyer des notifications",
 
     "helloWorld": "Bonjour à tous!",

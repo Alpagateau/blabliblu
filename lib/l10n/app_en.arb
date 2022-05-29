@@ -19,6 +19,9 @@
     "resetMemoryLen": "Reset Memory List Lenght",
     "animSlow": "Animate Slowly",
     "showMemContentDebug": "Show Memory Content (Debug)",
+    "systemTheme": "Don't fking care, let the default theme",
+    "lightTheme": "Burn my eyeballs plz (not my balls tho)",
+    "darkTheme": "Dark sasuke mode",
     "sendNotif": "Send Notifications",
 
     "helloWorld": "Hello World!",

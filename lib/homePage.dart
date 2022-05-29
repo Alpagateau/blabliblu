@@ -17,6 +17,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:get/get.dart';
 
 import 'aboutPageWidget.dart';
 import 'memorySaving.dart';
@@ -32,6 +33,7 @@ class MyHomePage extends StatefulWidget {
       : super(key: key);
   final String title;
   final CounterStorage storage;
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -45,8 +47,6 @@ class _MyHomePageState extends State<MyHomePage>
 
   bool showContent = false;
   bool schedulNotifs = false;
-  bool forceMode = false;
-  bool darkMode = false;
   int languageSetting = 0;
   List<String> PossiblesLanguages = [
     "System's language",
@@ -176,19 +176,6 @@ class _MyHomePageState extends State<MyHomePage>
           } catch (e) {
             print(e);
           }
-          try {
-            forceMode = value.getBool("forcemode")!
-                ? value.getBool("forcemode")!
-                : false;
-          } catch (e) {
-            print(e);
-          }
-          try {
-            darkMode =
-                value.getBool("darkmode")! ? value.getBool("darkmode")! : false;
-          } catch (e) {
-            print(e);
-          }
         });
 
         AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
@@ -286,9 +273,7 @@ class _MyHomePageState extends State<MyHomePage>
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Theme(
-      data: (forceMode)
-          ? ((darkMode) ? themes.DarkTheme : themes.MainTheme)
-          : Theme.of(context),
+      data: Theme.of(context),
       child: FutureBuilder<String>(
         future: _waiting, // a previously-obtained Future<String> or null
         builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
@@ -351,7 +336,7 @@ class _MyHomePageState extends State<MyHomePage>
               ),
               Padding(
                 padding: EdgeInsets.only(top: 16),
-                child: Text('Awaiting for data...'),
+                child: Text('Awaiting data...'),
               )
             ];
           }
