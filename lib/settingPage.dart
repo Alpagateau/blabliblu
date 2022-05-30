@@ -146,7 +146,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               Visibility(
                 visible: widget.home.themeS != 0,
-                child: CheckboxListTile(
+                child: SwitchListTile(
                   title: Text(
                     (widget.home.themeS == 1)
                         ? AppLocalizations.of(context)!.lightTheme
