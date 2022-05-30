@@ -1,14 +1,14 @@
 {
     "enterMoment": "Inscrivez un bon moment ici",
-    "shortDescribe": "Chaque jour, ecrivez 3 choses agréables",
-    "about": "A propos",
+    "shortDescribe": "Chaque jour, écrivez 3 choses agréables",
+    "about": "À propos",
     "diary": "Journal",
     "options": "Options",
     "share": "Partager",
     "saved": "Sauvgardé",
 
-    "shareTitle": "Check out this app",
-    "shareMsg": "Blabliblu is a simple gratitude journal to help people in bad mood",
+    "shareTitle": "Découvrez cette applcation",
+    "shareMsg": "Blabliblu est un simple journal pour exprimer votre gratitude et vous remonter le moral",
 
     "nothingToSee": "Rien de plus ici, essayez de noter de bons souvenirs tous les jours pour voir cette liste s'agrandir",
 
@@ -19,9 +19,9 @@
     "resetMemoryLen": "Reset la longueur de la liste de souvenirs",
     "animSlow": "Animer lentement",
     "showMemContentDebug": "Montrer le contenu de la memoire (Debug)",
-    "systemTheme": "J'men branle, thème système",
-    "lightTheme": "Crame moi les yeux",
-    "darkTheme": "Trop dark sasuke en ft",
+    "systemTheme": "Thème système",
+    "lightTheme": "Thème clair",
+    "darkTheme": "Thème sombre",
     "sendNotif": "Envoyer des notifications",
 
     "helloWorld": "Bonjour à tous!",
@@ -35,6 +35,6 @@
     "goodThings" : "3 bonnes choses ?",
     "five_goodThings" : "\n    Le principe des \"3 bonnes choses\" est une idée qui nous permet de nous concentrer sur le positif. Il a été utilisé en particulier pour les travailleurs de la santé en prévention de la dépression.",
     "sources" : "Sources : ",
-    "credits" : "Credits",
+    "credits" : "Crédits",
     "t_credits": "\n    Le code a été principalement réalisé par Martin Nadaud (Alpagateau), mais aidé par les contributeurs sur github. L'icône et le fond ont été réalisés par Marie Perrier (@art_with_marie)"
 }
