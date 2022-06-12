@@ -6,6 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 //TODO continues the about page
 
+///about page widget
 class AboutPage extends StatelessWidget {
   const AboutPage({
     Key? key,
