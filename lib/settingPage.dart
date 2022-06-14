@@ -16,12 +16,13 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
+    print(Get.theme.backgroundColor);
     ThemeMode _themeMode = (widget.home.themeS == 0)
         ? ThemeMode.system
         : (widget.home.themeS == 1 ? ThemeMode.dark : ThemeMode.light);
 
     ThemeData theme = ((widget.home.themeS == 0)
-        ? (_themeMode == ThemeMode.light ? themes.MainTheme : themes.DarkTheme)
+        ? Get.theme
         : (widget.home.themeS == 1 ? themes.MainTheme : themes.DarkTheme));
 
     bool darkMode = _themeMode == ThemeMode.dark;
@@ -30,7 +31,7 @@ class _SettingsPageState extends State<SettingsPage> {
         child: Scaffold(
           backgroundColor: theme.backgroundColor,
           appBar: AppBar(
-            title: Text(AppLocalizations.of(context)!.diary,
+            title: Text(AppLocalizations.of(context)!.options,
                 style: theme.textTheme.headline2),
           ),
           body: ListView(
