@@ -24,9 +24,10 @@ import 'themes.dart' as themes;
 import 'historyPage.dart';
 import 'homePage.dart';
 
-//TODO Notifs seem to work :?
+//TODO Notifs seem to work :?, not anymore
 //TODO Export data and load data
 //TODO Animations
+//TODO Show the new messages in the filesytem
 
 ///Lauches the app and setup a the notification channels
 ///Is launched when the app is called
