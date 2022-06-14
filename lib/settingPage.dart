@@ -18,7 +18,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     ThemeMode _themeMode = (widget.home.themeS == 0)
         ? ThemeMode.system
-        : (widget.home.themeS == 1 ? ThemeMode.dark : ThemeMode.light);
+        : (widget.home.themeS == 1 ? ThemeMode.light : ThemeMode.dark);
 
     ThemeData theme = ((widget.home.themeS == 0)
         ? (_themeMode == ThemeMode.light ? themes.MainTheme : themes.DarkTheme)

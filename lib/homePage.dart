@@ -69,6 +69,10 @@ class _MyHomePageState extends State<MyHomePage>
   ///- 2 : Dark theme
   int themeS = 0;
 
+  ///Number of days where the user wrote something.
+  ///Seted up in [asyncLoader]
+  int flames = 0;
+
   ///List of Strings, possibles languages, not used yet
   List<String> PossiblesLanguages = [
     "System's language",
@@ -177,6 +181,9 @@ class _MyHomePageState extends State<MyHomePage>
             controllers.last.text = a.memo.last['souvenirs'][i];
           }
         }
+
+        flames = flamesFromMemoir(a);
+        print("===========================>$flames<=======================");
 
         SharedPreferences.getInstance().then((value) {
           try {
@@ -332,21 +339,24 @@ class _MyHomePageState extends State<MyHomePage>
                     ),
                   ),
                   Center(
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: ElevatedButton.icon(
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.orange),
-                        ),
-                        icon: Icon(Icons.local_fire_department),
-                        onPressed: (() {}),
-                        label: Text(
-                          "6 Days in a row",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                    child: Visibility(
+                      visible: (flames > 2),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: ElevatedButton.icon(
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all<Color>(Colors.orange),
+                          ),
+                          icon: Icon(Icons.local_fire_department),
+                          onPressed: (() {}),
+                          label: Text(
+                            "$flames Days in a row",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
