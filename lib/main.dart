@@ -25,10 +25,13 @@ import 'themes.dart' as themes;
 import 'historyPage.dart';
 import 'homePage.dart';
 
-//TODO Notifs seem to work :?
+//TODO Notifs seem to work :?, not anymore
 //TODO Export data and load data
 //TODO Animations
+//TODO Show the new messages in the filesytem
 
+///Lauches the app and setup a the notification channels
+///Is launched when the app is called
 void main() {
   AwesomeNotifications().initialize(
       'resource://drawable/res_app_icon',
@@ -53,10 +56,11 @@ void main() {
   runApp(const MeApp());
 }
 
+///The main widget
 class MeApp extends StatelessWidget {
   const MeApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  ///Builds the application and initiate the localization
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -74,6 +78,8 @@ class MeApp extends StatelessWidget {
         Locale('en', ''), // English, no country code
         Locale('fr', ''), // French, no country code
       ],
+
+      /// lauches the main page with a [title] and a [storage] for memory management
       home: MyHomePage(title: 'Blabliblu', storage: CounterStorage()),
     );
   }

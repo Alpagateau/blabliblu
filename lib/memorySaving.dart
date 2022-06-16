@@ -41,7 +41,7 @@ class CounterStorage {
   }
 }
 
-void saveDay(
+String saveDay(
   String inFile,
   DateTime date,
   List<TextEditingController> controllers,
@@ -76,4 +76,5 @@ void saveDay(
   }
   jsonResult += "]}";
   storage.writeCounter(jsonResult);
+  return jsonResult;
 }

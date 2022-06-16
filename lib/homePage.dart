@@ -168,6 +168,7 @@ class _MyHomePageState extends State<MyHomePage>
           inFile = "{\"Memory\" : [{}";
         }
 
+        fullMemory = inFile;
         final String jsond = inFile + "]}";
         final parsedJson = jsonDecode(jsond);
         final a = Memoir.fromJson(parsedJson);
@@ -257,18 +258,22 @@ class _MyHomePageState extends State<MyHomePage>
   }
 
   String inFile = "";
+  String fullMemory = "";
 
   void showWhatIsInside() {
     widget.storage.readCounter().then((String message) {
       if (message == "{\"Memory\" : [{}") {
         inFile = "{\"Memory\" : [{}";
+        fullMemory = inFile;
       }
-      saveDay(inFile, today, controllers, widget.storage);
+      String toShow = saveDay(inFile, today, controllers, widget.storage);
+      fullMemory = toShow;
       showDialog(
           context: context,
           builder: (context) {
+            print("<=============$toShow==============>");
             String value =
-                showContent ? message : AppLocalizations.of(context)!.saved;
+                showContent ? toShow : AppLocalizations.of(context)!.saved;
             return AlertDialog(
               backgroundColor: Theme.of(context).backgroundColor,
               content: Text(
@@ -485,7 +490,7 @@ class _MyHomePageState extends State<MyHomePage>
                             MaterialPageRoute(
                                 builder: (context) => HistoryPage(
                                       storage: widget.storage,
-                                      fileStor: inFile,
+                                      fileStor: fullMemory,
                                       context: context,
                                     )));
                       },
