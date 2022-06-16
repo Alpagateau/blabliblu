@@ -1,3 +1,6 @@
+// ignore_for_file: file_names
+
+// ignore: library_names
 library homePage;
 
 import 'dart:async';
@@ -28,6 +31,7 @@ import 'historyPage.dart';
 
 part 'settingPage.dart';
 
+///Main page of the App
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title, required this.storage})
       : super(key: key);
@@ -38,35 +42,55 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+///State of [MyHomePage]
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
+  ///number of memory cells +1
   int _counter = 4;
+
+  ///today's date
   DateTime today = DateTime.now();
 
+  ///path to the local storage, made to be shown in the [AboutPage]
   String filePath = "##############";
 
+  ///Bool value, show the JSON file of everything that has been saved by the app
   bool showContent = false;
+
+  ///Bool value, send notifications to the user
   bool schedulNotifs = false;
+
+  ///Int value, setting to choose the language of the app, not used yet
   int languageSetting = 0;
+
+  ///Int value, theme setting:
+  ///- 0 : same as local
+  ///- 1 : Light theme
+  ///- 2 : Dark theme
   int themeS = 0;
+
+  ///Number of days where the user wrote something.
+  ///Seted up in [asyncLoader]
+  int flames = 0;
+
+  ///List of Strings, possibles languages, not used yet
   List<String> PossiblesLanguages = [
     "System's language",
     "English",
     "Français"
   ];
 
+  ///list of all the [TextEditingController]s assigned to memory cells
+  ///Their must be [_counter]-1 values
   List<TextEditingController> controllers = [
     TextEditingController(),
     TextEditingController(),
     TextEditingController()
   ];
+
+  ///increments [_counter] by one, and ass a new [TextEditingController] to the [controllers]
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _counter++;
       controllers.add(TextEditingController());
       controllers.last.addListener(textEditListener);
@@ -158,6 +182,9 @@ class _MyHomePageState extends State<MyHomePage>
             controllers.last.text = a.memo.last['souvenirs'][i];
           }
         }
+        stderr.writeln('print me !!!!');
+        flames = flamesFromMemoir(a);
+        print("===========================>$flames<=======================");
 
         SharedPreferences.getInstance().then((value) {
           try {
@@ -313,6 +340,34 @@ class _MyHomePageState extends State<MyHomePage>
                             isThisImage(controllers[index - 1].text),
                           );
                         },
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Visibility(
+                      visible: (flames > 2),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: ElevatedButton.icon(
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all<Color>(Colors.orange),
+                          ),
+                          icon: Icon(Icons.local_fire_department),
+                          onPressed: (() {
+                            print('Hello world');
+                            shareMessage(context,
+                                "Hey, I wrote nice things everyday for now $flames days !!");
+                          }),
+                          label: Text(
+                            "$flames Days in a row",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),

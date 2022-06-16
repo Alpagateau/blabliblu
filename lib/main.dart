@@ -6,6 +6,7 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:blabliblu/loadingIcon.dart';
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:path/path.dart' as p;
 
 import 'package:path_provider/path_provider.dart';
@@ -51,7 +52,7 @@ void main() {
         ),
       ],
       debug: true);
-
+  //debugRepaintRainbowEnabled = true;
   runApp(const MeApp());
 }
 

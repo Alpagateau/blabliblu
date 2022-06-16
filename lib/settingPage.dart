@@ -19,7 +19,7 @@ class _SettingsPageState extends State<SettingsPage> {
     print(Get.theme.backgroundColor);
     ThemeMode _themeMode = (widget.home.themeS == 0)
         ? ThemeMode.system
-        : (widget.home.themeS == 1 ? ThemeMode.dark : ThemeMode.light);
+        : (widget.home.themeS == 1 ? ThemeMode.light : ThemeMode.dark);
 
     ThemeData theme = ((widget.home.themeS == 0)
         ? Get.theme

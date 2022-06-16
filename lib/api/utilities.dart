@@ -1,5 +1,9 @@
+import 'dart:io';
+
+import 'package:blabliblu/souvenir.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_share/flutter_share.dart';
 
 int createUniqueId() {
@@ -96,4 +100,42 @@ Future<void> shareApp(BuildContext context) async {
       linkUrl:
           'https://play.google.com/store/apps/details?id=com.alpagames.blabliblu',
       chooserTitle: 'Example Chooser Title');
+}
+
+Future<void> shareMessage(BuildContext context, String txt,
+    {String title = "Blabliblu"}) async {
+  await FlutterShare.share(
+    title: title,
+    text: txt,
+    linkUrl:
+        'https://play.google.com/store/apps/details?id=com.alpagames.blabliblu',
+  );
+}
+
+int flamesFromMemoir(Memoir m) {
+  DateTime? d1 = null;
+  int i = 0;
+  int f = 0;
+  bool stop = false;
+  stderr.writeln('print me !!!!');
+  final souv = m.memo.sublist(1).reversed.toList();
+  if (souv.length == 0) {
+    print("WAIIIT");
+    return 0;
+  }
+  do {
+    final date = souv[i]['Date'];
+    d1 = new DateTime(date[2], date[1], date[0]);
+    Duration z = d1.difference(
+      new DateTime(souv[i + 1]["Date"][2], souv[i + 1]["Date"][1],
+          souv[i + 1]["Date"][0]),
+    );
+    if (z.inDays == 1) {
+      i++;
+      f++;
+    } else {
+      stop = true;
+    }
+  } while (!stop);
+  return f + 1;
 }
