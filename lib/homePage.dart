@@ -181,7 +181,7 @@ class _MyHomePageState extends State<MyHomePage>
             controllers.last.text = a.memo.last['souvenirs'][i];
           }
         }
-
+        stderr.writeln('print me !!!!');
         flames = flamesFromMemoir(a);
         print("===========================>$flames<=======================");
 
@@ -316,29 +316,6 @@ class _MyHomePageState extends State<MyHomePage>
                         : null),
                   ),
                   Center(
-                    // Center is a layout widget. It takes a single child and positions it
-                    // in the middle of the parent.
-                    child: Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: ListView.builder(
-                        itemCount: _counter + 1,
-                        itemBuilder: (BuildContext context, int index) {
-                          if (index == 0) {
-                            return buildDateLabel("${today.day}",
-                                "${today.month}", "${today.year}");
-                          } else if (index == _counter) {
-                            return buildAddButton("oe");
-                          }
-                          return buildSouvenirCard(
-                            controllers[index - 1],
-                            index - 1,
-                            isThisImage(controllers[index - 1].text),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                  Center(
                     child: Visibility(
                       visible: (flames > 2),
                       child: Align(
@@ -359,6 +336,29 @@ class _MyHomePageState extends State<MyHomePage>
                             ),
                           ),
                         ),
+                      ),
+                    ),
+                  ),
+                  Center(
+                    // Center is a layout widget. It takes a single child and positions it
+                    // in the middle of the parent.
+                    child: Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: ListView.builder(
+                        itemCount: _counter + 1,
+                        itemBuilder: (BuildContext context, int index) {
+                          if (index == 0) {
+                            return buildDateLabel("${today.day}",
+                                "${today.month}", "${today.year}");
+                          } else if (index == _counter) {
+                            return buildAddButton("oe");
+                          }
+                          return buildSouvenirCard(
+                            controllers[index - 1],
+                            index - 1,
+                            isThisImage(controllers[index - 1].text),
+                          );
+                        },
                       ),
                     ),
                   ),
