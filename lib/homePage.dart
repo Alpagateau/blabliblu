@@ -316,30 +316,6 @@ class _MyHomePageState extends State<MyHomePage>
                         : null),
                   ),
                   Center(
-                    child: Visibility(
-                      visible: (flames > 2),
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: ElevatedButton.icon(
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all<Color>(Colors.orange),
-                          ),
-                          icon: Icon(Icons.local_fire_department),
-                          onPressed: (() {}),
-                          label: Text(
-                            "$flames Days in a row",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Center(
                     // Center is a layout widget. It takes a single child and positions it
                     // in the middle of the parent.
                     child: Padding(
@@ -359,6 +335,34 @@ class _MyHomePageState extends State<MyHomePage>
                             isThisImage(controllers[index - 1].text),
                           );
                         },
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Visibility(
+                      visible: (flames > 2),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: ElevatedButton.icon(
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all<Color>(Colors.orange),
+                          ),
+                          icon: Icon(Icons.local_fire_department),
+                          onPressed: (() {
+                            print('Hello world');
+                            shareMessage(context,
+                                "Hey, I wrote nice things everyday for now $flames days !!");
+                          }),
+                          label: Text(
+                            "$flames Days in a row",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),

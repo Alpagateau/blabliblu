@@ -103,7 +103,7 @@ Future<void> shareApp(BuildContext context) async {
 }
 
 Future<void> shareMessage(BuildContext context, String txt,
-    {String title = ""}) async {
+    {String title = "Blabliblu"}) async {
   await FlutterShare.share(
     title: title,
     text: txt,
