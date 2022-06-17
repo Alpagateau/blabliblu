@@ -9,6 +9,7 @@ import 'dart:convert';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:blabliblu/api/utilities.dart';
+import 'package:blabliblu/badMemoryPage.dart';
 import 'package:blabliblu/loadingIcon.dart';
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -512,6 +513,27 @@ class _MyHomePageState extends State<MyHomePage>
                                       storage: widget.storage,
                                       home: this,
                                     ))));
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(
+                        Icons.settings,
+                        color: Theme.of(context).textTheme.subtitle2?.color,
+                      ),
+                      title: Text(
+                        "Test",
+                        style: Theme.of(context).textTheme.subtitle2,
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Theme(
+                              data: themes.MainTheme,
+                              child: destroyMemory(),
+                            ),
+                          ),
+                        );
                       },
                     ),
                     ListTile(
