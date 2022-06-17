@@ -182,9 +182,7 @@ class _MyHomePageState extends State<MyHomePage>
             controllers.last.text = a.memo.last['souvenirs'][i];
           }
         }
-        stderr.writeln('print me !!!!');
         flames = flamesFromMemoir(a);
-        print("===========================>$flames<=======================");
 
         SharedPreferences.getInstance().then((value) {
           try {

@@ -136,6 +136,9 @@ int flamesFromMemoir(Memoir m) {
     } else {
       stop = true;
     }
+    if (i + 1 > souv.length) {
+      stop = true;
+    }
   } while (!stop);
   return f + 1;
 }

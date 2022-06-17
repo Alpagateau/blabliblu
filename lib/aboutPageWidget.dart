@@ -143,23 +143,25 @@ class AboutPage extends StatelessWidget {
                   style: Theme.of(context).textTheme.caption,
                 ),
                 onTap: () =>
-                    launch("https://happyproject.in/three-good-things/"),
+                    //launch("https://happyproject.in/three-good-things/"),
+                    launchUrl(Uri.parse(
+                        "https://happyproject.in/three-good-things/")),
               ),
               InkWell(
                 child: Text(
                   "Dr. J. Bryan Sexton - Three Good Things",
                   style: Theme.of(context).textTheme.caption,
                 ),
-                onTap: () =>
-                    launch("https://www.youtube.com/watch?v=hZ4aT_RVHCs"),
+                onTap: () => launchUrl(
+                    Uri.parse("https://www.youtube.com/watch?v=hZ4aT_RVHCs")),
               ),
               InkWell(
                 child: Text(
                   "Dr. Seligman : Three Good Things",
                   style: Theme.of(context).textTheme.caption,
                 ),
-                onTap: () =>
-                    launch("https://www.youtube.com/watch?v=ZOGAp9dw8Ac"),
+                onTap: () => launchUrl(
+                    Uri.parse("https://www.youtube.com/watch?v=ZOGAp9dw8Ac")),
               ),
               const Divider(),
               Text(
