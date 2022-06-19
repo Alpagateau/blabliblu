@@ -444,7 +444,7 @@ class _MyHomePageState extends State<MyHomePage>
                   children: [
                     DrawerHeader(
                       decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
+                        color: Theme.of(context).colorScheme.surface,
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -528,10 +528,7 @@ class _MyHomePageState extends State<MyHomePage>
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Theme(
-                              data: themes.MainTheme,
-                              child: destroyMemory(),
-                            ),
+                            builder: (context) => destroyMemory(),
                           ),
                         );
                       },
@@ -648,7 +645,7 @@ class _MyHomePageState extends State<MyHomePage>
 
   Widget buildAddButton(String s) {
     return Card(
-      color: Theme.of(context).primaryColor,
+      color: Theme.of(context).colorScheme.primaryVariant,
       elevation: 3.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(32.0),
