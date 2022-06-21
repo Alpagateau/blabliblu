@@ -70,6 +70,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     AppLocalizations.of(context)!.resetMemoryLen,
                     style: TextStyle(fontSize: 18),
                   )),
+
               //Notifs
               Padding(
                 padding: EdgeInsets.fromLTRB(4, 16, 4, 0),

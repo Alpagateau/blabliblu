@@ -26,15 +26,16 @@ import 'historyPage.dart';
 import 'homePage.dart';
 
 //TODO Notifs seem to work :?, not anymore
-//TODO Export data and load data
+//TODO Export data and load data DOING
 //TODO Animations
-//TODO Show the new messages in the filesytem
 
 //TODO widget on the main page ?
 //TODO in app review
 //TODO maybe try "once" for the notifications
 //TODO implement fl_charts
 //TODO make a show case, with show case view
+//TODO add intro sliders
+//TODO implement name of the person
 
 ///Lauches the app and setup a the notification channels
 ///Is launched when the app is called
