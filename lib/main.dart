@@ -30,6 +30,12 @@ import 'homePage.dart';
 //TODO Animations
 //TODO Show the new messages in the filesytem
 
+//TODO widget on the main page ?
+//TODO in app review
+//TODO maybe try "once" for the notifications
+//TODO implement fl_charts
+//TODO make a show case, with show case view
+
 ///Lauches the app and setup a the notification channels
 ///Is launched when the app is called
 void main() {
