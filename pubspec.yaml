@@ -45,6 +45,7 @@ dependencies:
   flutter_share: ^2.0.0
   path: ^1.8.0
   get: ^4.6.5
+  rive: ^0.9.0
 
 dev_dependencies:
   flutter_test:
