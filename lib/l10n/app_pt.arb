@@ -1,0 +1,40 @@
+{
+    "enterMoment": "Introduza o seu bom momento",
+    "shortDescribe": "Todos os dias, basta digitar 3 coisas boas que aconteceram.",
+    "about": "Sobre",
+    "diary": "Diário",
+    "options": "Parâmetros",
+    "share": "Partilhar",
+    "saved": "Guardado",
+
+    "shareTitle": "Veja esta aplicação",
+    "shareMsg": "Blabliblu é um simples diário de gratidão para ajudar pessoas de mau humor",
+
+    "nothingToSee": "Nada mais para ver aqui, tente escrever todos os dias para ver o comprimento desta lista a tornar-se cada vez maior",
+
+    "momorySettings": "Definições de memória",
+    "appSettings": "Definições da aplicação",
+    "notifSettings": "Definições de notificação",
+    "deleteMemory" : "Apagar memória",
+    "resetMemoryLen": "Reiniciar a duração da lista de memória",
+    "animSlow": "Animar devagar",
+    "showMemContentDebug": "Mostrar conteúdo de memória (Debug)",
+    "systemTheme": "O tema do sistema",
+    "lightTheme": "Tema leve",
+    "darkTheme": "Tema obscuro",
+    "sendNotif": "Enviar Notificações",
+
+    "helloWorld": "Olá Mundo!",
+    "one_thankYou": "\n    Olá, obrigado por utilizar esta aplicação! É uma alegria saber que a minha aplicação pode ser útil a alguém. \n",
+    "whyDisApp" : "Porquê esta aplicação ?",
+    "two_whydisapp": "\n    Esta aplicação foi criada para ajudar as pessoas que se sentem mal a melhorar. A ideia surgiu de um conselho dado por um amigo quando me estava a sentir mal. Ela disse-me para escrever todas as noites três coisas que me faziam sorrir durante o dia. Depois de fazer isto durante cerca de dois meses, decidi criar esta aplicação para ajudar as pessoas a aplicar este conselho. Também serviu como meu primeiro projecto para aprender a codificar candidaturas para o público em geral.\n",
+    "howItWorks" : "Como é que funciona ?",
+    "three_howworks": "\n    Todos os dias, receberá uma notificação para o lembrar de anotar as coisas que o fizeram sorrir. É enviada apenas uma notificação por dia. (pode desactivá-las nas definições). Quando introduz informações nos campos fornecidos, o conteúdo é guardado num ficheiro próprio no seu telefone. Nada é enviado a ninguém. Tudo acontece no seu telefone, em privado. Quando abre a Agenda, o ficheiro é aberto e exibido de uma forma conveniente.",
+    "tips" : "Algumas dicas",
+    "four_tips": "\n    Por isso, do meu ponto de vista, você deveria tentar ser o mais preciso possível durante a escrita, isso tornará o texto mais longo e poderá forçá-lo a usar múltiplas células, no final, quando você olhar para trás, parece que você fez mais trabalho!",
+    "goodThings" : "Três coisas boas ?",
+    "five_goodThings" : "\n    O princípio das \"3 coisas boas\" é uma ideia que nos permite focar no positivo. Tem sido utilizado em particular para os profissionais de saúde, a fim de combater uma possível depressão.",
+    "sources" : "Fontes : ",
+    "credits" : "Créditos",
+    "t_credits": "\n    O código foi feito principalmente por Martin Nadaud (Alpagateau), mas ajudado pelos colaboradores do github. O ícone e o fundo foram feitos por Marie Perrier (@art_with_marie)"
+}

@@ -1,0 +1,40 @@
+{
+    "enterMoment": "Inserisci il tuo momento positivo",
+    "shortDescribe": "Ogni giorno, scrivete 3 cose positive che sono accadute.",
+    "about": "Circa",
+    "diary": "Diario",
+    "options": "Impostazioni",
+    "share": "Condividi",
+    "saved": "Salvati",
+
+    "shareTitle": "Guarda questa applicazione",
+    "shareMsg": "Blabliblu è un semplice diario della gratitudine per aiutare le persone di cattivo umore",
+
+    "nothingToSee": "Non c'è altro da vedere qui, cercate di scrivere ogni giorno per vedere la lunghezza di questa lista diventare più lunga",
+
+    "momorySettings": "Impostazioni dell'applicazione",
+    "appSettings": "Impostazioni dell'applicazione",
+    "notifSettings": "Impostazioni di notifica",
+    "deleteMemory" : "Cancellare la memoria",
+    "resetMemoryLen": "Azzeramento della lunghezza dell'elenco di memoria",
+    "animSlow": "Animare lentamente",
+    "showMemContentDebug": "Mostra il contenuto della memoria (Debug)",
+    "systemTheme": "Tema del sistema",
+    "lightTheme": "Tema luminoso",
+    "darkTheme": "Tema scuro",
+    "sendNotif": "Inviare notifiche",
+
+    "helloWorld": "Ciao mondo!",
+    "one_thankYou": "\n    Ciao, grazie per aver usato questa app! È una gioia sapere che la mia app può essere utile a qualcuno. \n",
+    "whyDisApp" : "Perché questa applicazione?",
+    "two_whydisapp": "\n    Questa applicazione è stata creata per aiutare le persone che si sentono male a stare meglio. L'idea è nata da un consiglio dato da un'amica quando mi sentivo male. Mi disse di scrivere ogni sera tre cose che mi avevano fatto sorridere durante il giorno. Dopo averlo fatto per circa due mesi, ho deciso di creare questa applicazione per aiutare le persone ad applicare questo consiglio. È stato anche il mio primo progetto per imparare a codificare applicazioni per il grande pubblico. \n",
+    "howItWorks" : "Come funziona?",
+    "three_howworks": "\n    Ogni giorno riceverete una notifica che vi ricorderà di annotare le cose che vi hanno fatto sorridere. Viene inviata una sola notifica al giorno. (è possibile disattivarle nelle impostazioni). Quando si inseriscono le informazioni negli appositi campi, il contenuto viene salvato in un file personale sul telefono. Non viene inviato nulla a nessuno. Tutto avviene sul vostro telefono, in privato. Quando si apre il Diario, il file viene aperto e visualizzato in modo pratico. ",
+    "tips" : "Alcuni suggerimenti",
+    "four_tips": "\n    Quindi, dal mio punto di vista, dovresti cercare di essere il più preciso possibile mentre scrivi, questo renderà il testo più lungo e potrebbe costringerti a usare più celle, alla fine, quando lo guarderai indietro, sembrerà che tu abbia fatto più lavoro!!!",
+    "goodThings" : "Tre cose buone?",
+    "five_goodThings" : "\n    Il principio delle \"3 cose buone\" è un'idea che ci permette di concentrarci sugli aspetti positivi. È stato utilizzato in particolare per gli operatori sanitari al fine di combattere la depressione.",
+    "sources" : "Fonti : ",
+    "credits" : "Crediti",
+    "t_credits": "\n    Il codice è stato realizzato principalmente da Martin Nadaud (Alpagateau), ma aiutato dai collaboratori di github. L'icona e lo sfondo sono stati realizzati da Marie Perrier (@art_with_marie)."
+}

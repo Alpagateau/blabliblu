@@ -1,0 +1,40 @@
+{
+    "enterMoment": "Zadajte svoj dobrý moment",
+    "shortDescribe": "Každý deň jednoducho zadajte 3 dobré veci, ktoré sa stali",
+    "about": "O",
+    "diary": "Denník",
+    "options": "Parametre",
+    "share": "Zdieľať",
+    "saved": "Uložené",
+
+    "shareTitle": "Zobraziť túto aplikáciu",
+    "shareMsg": "Blabliblu je jednoduchý denník vďačnosti, ktorý pomáha ľuďom so zlou náladou",
+
+    "nothingToSee":"Nič iné tu nie je vidieť, skúste písať každý deň, aby ste videli, ako sa dĺžka tohto zoznamu stále predlžuje.",
+
+    "momorySettings": "Nastavenia pamäte",
+    "appSettings": "Nastavenia aplikácie",
+    "notifSettings": "Nastavenia oznámení",
+    "deleteMemory" : "Odstránenie pamäte",
+    "resetMemoryLen": "Obnovenie dĺžky zoznamu pamäte",
+    "animSlow": "Pomalá animácia",
+    "showMemContentDebug": "Zobraziť obsah pamäte (ladenie)",
+    "systemTheme": "Systémová téma",
+    "lightTheme": "lightTheme",
+    "darkTheme": "tmavá téma",
+    "sendNotif": "SendNotifications",
+
+    "helloWorld": "helloWorld!",
+    "one_thankYou":"\nHello, ďakujeme, že používate túto aplikáciu! Je radosť vedieť, že moja aplikácia môže byť pre niekoho užitočná. \n",
+    "whyDisApp" : "prečo táto aplikácia?",
+    "two_whydisapp" :"\nTáto aplikácia bola vytvorená s cieľom pomôcť ľuďom, ktorí sa cítia zle, aby im bolo lepšie. Nápad vznikol na základe rady, ktorú mi dal priateľ, keď som sa cítil zle. Povedala mi, aby som si každý večer zapísala tri veci, ktoré ma počas dňa rozosmiali. Keď som to robila asi dva mesiace, rozhodla som sa vytvoriť túto aplikáciu, aby som pomohla ľuďom uplatňovať túto radu. Zároveň mi poslúžila ako môj prvý projekt, v rámci ktorého som sa naučil kódovať aplikácie pre širokú verejnosť.",
+    "howItWorks" : "howItWorks ?",
+    "three_howworks" : "\nKaždý deň dostanete upozornenie, ktoré vám pripomenie, aby ste si zapísali veci, ktoré vás rozosmiali. Denne sa odošle len jedno oznámenie (môžete ich vypnúť v nastaveniach). Po zadaní informácií do určených polí sa obsah uloží do samostatného súboru v telefóne. Nikomu sa nič neodošle. Všetko sa odohráva v súkromí vášho telefónu. Keď otvoríte Kalendár, súbor sa otvorí a zobrazí sa pohodlným spôsobom.",
+    "tips" : "Niekoľko tipov",
+    "four_tips" : "\nTakže z môjho pohľadu by ste sa mali snažiť byť pri písaní čo najpresnejší, text sa tým predĺži a môže vás to prinútiť použiť viacero buniek, nakoniec, keď sa pozriete späť, vyzerá to, že ste si dali viac práce!",
+    "goodThings" : "tri dobré veci ?",
+    "five_goodThings" : "\nZásada \"3 goodThings\" je myšlienka, ktorá nám umožňuje zamerať sa na pozitívne veci. Používa sa najmä u zdravotníckych pracovníkov na boj proti možnej depresii.",
+    "sources" : "Zdroje : ",
+    "credits" : "Zdrojové kódy",
+    "t_credits" : "\nKód vytvoril hlavne Martin Nadaud (Alpagateau), ale pomohli mu aj prispievatelia z githubu. Ikonu a pozadie vytvorila Marie Perrier (@art_with_marie)"
+}

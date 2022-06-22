@@ -84,6 +84,10 @@ class MeApp extends StatelessWidget {
       supportedLocales: const [
         Locale('en', ''), // English, no country code
         Locale('fr', ''), // French, no country code
+        Locale('es', ''), // Spanish, no country code
+        Locale('pt', ''), // Portuguese, no country code
+        Locale('sk', ''), // Slovak, no country code
+        Locale('hi', ''), // Hindi, no country code
       ],
 
       /// lauches the main page with a [title] and a [storage] for memory management
