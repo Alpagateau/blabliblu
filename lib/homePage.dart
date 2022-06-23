@@ -183,7 +183,7 @@ class _MyHomePageState extends State<MyHomePage>
             controllers.last.text = a.memo.last['souvenirs'][i];
           }
         }
-        flames = flamesFromMemoir(a);
+        //flames = flamesFromMemoir(a);
 
         SharedPreferences.getInstance().then((value) {
           try {
@@ -515,6 +515,7 @@ class _MyHomePageState extends State<MyHomePage>
                                     ))));
                       },
                     ),
+                    /*
                     ListTile(
                       leading: Icon(
                         Icons.settings,
@@ -533,6 +534,7 @@ class _MyHomePageState extends State<MyHomePage>
                         );
                       },
                     ),
+                    */
                     ListTile(
                       leading: Icon(
                         Icons.share,
