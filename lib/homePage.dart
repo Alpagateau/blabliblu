@@ -496,6 +496,24 @@ class _MyHomePageState extends State<MyHomePage>
                     ),
                     ListTile(
                       leading: Icon(
+                        Icons.delete_forever,
+                        color: Theme.of(context).textTheme.subtitle2?.color,
+                      ),
+                      title: Text(
+                        "Forget machine",
+                        style: Theme.of(context).textTheme.subtitle2,
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => destroyMemory(),
+                          ),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(
                         Icons.settings,
                         color: Theme.of(context).textTheme.subtitle2?.color,
                       ),
@@ -515,26 +533,6 @@ class _MyHomePageState extends State<MyHomePage>
                                     ))));
                       },
                     ),
-                    /*
-                    ListTile(
-                      leading: Icon(
-                        Icons.settings,
-                        color: Theme.of(context).textTheme.subtitle2?.color,
-                      ),
-                      title: Text(
-                        "Test",
-                        style: Theme.of(context).textTheme.subtitle2,
-                      ),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => destroyMemory(),
-                          ),
-                        );
-                      },
-                    ),
-                    */
                     ListTile(
                       leading: Icon(
                         Icons.share,
