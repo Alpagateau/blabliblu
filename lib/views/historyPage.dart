@@ -4,7 +4,7 @@ import 'package:flutter_share/flutter_share.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'memorySaving.dart';
+import 'src/database/memorySaving.dart';
 import 'souvenir.dart';
 
 class HistoryPage extends StatefulWidget {

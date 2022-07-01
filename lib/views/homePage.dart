@@ -8,9 +8,10 @@ import 'dart:io';
 import 'dart:convert';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:blabliblu/api/utilities.dart';
+import 'package:blabliblu/src/api/utilities.dart';
 import 'package:blabliblu/badMemoryPage.dart';
 import 'package:blabliblu/loadingIcon.dart';
+import 'package:blabliblu/src/api/notification_push.dart';
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as p;
@@ -18,15 +19,14 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
 
-import 'aboutPageWidget.dart';
-import 'memorySaving.dart';
+import 'views/aboutPageWidget.dart';
+import 'src/database/memorySaving.dart';
 import 'souvenir.dart';
-import 'api/notification_push.dart';
+import 'src/api/notification_push.dart';
 import 'themes.dart' as themes;
 import 'historyPage.dart';
 
