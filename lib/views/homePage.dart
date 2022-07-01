@@ -9,8 +9,8 @@ import 'dart:convert';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:blabliblu/src/api/utilities.dart';
-import 'package:blabliblu/badMemoryPage.dart';
-import 'package:blabliblu/loadingIcon.dart';
+import 'package:blabliblu/views/badMemoryPage.dart';
+import 'package:blabliblu/src/widgets/loadingIcon.dart';
 import 'package:blabliblu/src/api/notification_push.dart';
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -23,11 +23,11 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
 
-import 'views/aboutPageWidget.dart';
-import 'src/database/memorySaving.dart';
-import 'souvenir.dart';
-import 'src/api/notification_push.dart';
-import 'themes.dart' as themes;
+import '../src/widgets/aboutPageWidget.dart';
+import '../src/database/memorySaving.dart';
+import '../src/widgets/souvenir.dart';
+import '../src/api/notification_push.dart';
+import '../themes/themes.dart' as themes;
 import 'historyPage.dart';
 
 part 'settingPage.dart';

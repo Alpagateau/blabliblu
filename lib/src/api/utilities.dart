@@ -1,9 +1,8 @@
 import 'dart:io';
 
-import 'package:blabliblu/souvenir.dart';
+import 'package:blabliblu/src/widgets/souvenir.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_share/flutter_share.dart';
 
 int createUniqueId() {
@@ -144,7 +143,6 @@ int flamesFromMemoir(Memoir m) {
 }
 
 MaterialColor fromRGB(int r, int g, int b) {
-
   Map<int, Color> color = {
     50: Color.fromRGBO(r, g, b, .1),
     100: Color.fromRGBO(r, g, b, .2),

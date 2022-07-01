@@ -8,8 +8,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 
 import 'src/database/memorySaving.dart';
-import 'themes.dart' as themes;
-import 'homePage.dart';
+import 'themes/themes.dart' as themes;
+import 'views/homePage.dart';
 
 //TODO Notifs seem to work :?, not anymore
 //TODO Export data and load data DOING
