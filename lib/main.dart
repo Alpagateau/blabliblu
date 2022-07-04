@@ -26,11 +26,11 @@ import 'historyPage.dart';
 import 'homePage.dart';
 
 //TODO Notifs seem to work :?, not anymore
-//TODO Export data and load data DOING
+//TODO Export data and load data
 //TODO Animations
 
 //TODO widget on the main page ?
-//TODO in app review
+//TODO in app review DOING THAT Rn
 //TODO maybe try "once" for the notifications
 //TODO implement fl_charts
 //TODO make a show case, with show case view

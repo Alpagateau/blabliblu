@@ -19,6 +19,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
@@ -73,6 +74,10 @@ class _MyHomePageState extends State<MyHomePage>
   ///Number of days where the user wrote something.
   ///Seted up in [asyncLoader]
   int flames = 0;
+
+  ///[InAppReview] variable to handle in app reviews
+  ///used in [showWhatIsInside] throught the [showInAppReview] method
+  final InAppReview inAppReview = InAppReview.instance;
 
   ///List of Strings, possibles languages, not used yet
   List<String> PossiblesLanguages = [
@@ -288,7 +293,18 @@ class _MyHomePageState extends State<MyHomePage>
               ],
             );
           });
+
+      if (flames > 3) {
+        //To activate only when testing, not ready yet
+        if (false) showInAppReview();
+      }
     });
+  }
+
+  void showInAppReview() async {
+    if (await inAppReview.isAvailable()) {
+      inAppReview.requestReview();
+    }
   }
 
   void textEditListener() {
