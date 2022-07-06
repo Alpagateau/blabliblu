@@ -1,29 +1,15 @@
-import 'dart:async';
-import 'dart:io';
-import 'dart:convert';
-
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:blabliblu/loadingIcon.dart';
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:path/path.dart' as p;
 
-import 'package:path_provider/path_provider.dart';
-import 'package:flutter/scheduler.dart' show timeDilation;
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
 
-import 'aboutPageWidget.dart';
-import 'memorySaving.dart';
-import 'souvenir.dart';
-import 'api/notification_push.dart';
-import 'themes.dart' as themes;
-import 'historyPage.dart';
-import 'homePage.dart';
+import 'src/database/memorySaving.dart';
+import 'themes/themes.dart' as themes;
+import 'views/homePage.dart';
 
 //TODO Notifs seem to work :?, not anymore
 //TODO Export data and load data
