@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 class Souvenir {
   // ignore: non_constant_identifier_names
   List<int> Date = [0, 0, 0];

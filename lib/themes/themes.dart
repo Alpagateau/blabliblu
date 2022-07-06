@@ -1,13 +1,11 @@
-import 'package:blabliblu/api/utilities.dart';
+import 'package:blabliblu/src/api/utilities.dart';
 import 'package:flutter/material.dart';
 
 ColorScheme darkColorScheme = const ColorScheme(
   brightness: Brightness.dark,
   primary: Color.fromARGB(255, 13, 152, 186),
-  primaryVariant: Color.fromARGB(255, 13, 170, 186),
   onPrimary: Color.fromARGB(255, 200, 200, 255),
   secondary: Color.fromARGB(255, 11, 135, 167),
-  secondaryVariant: Color.fromARGB(255, 196, 100, 189),
   onSecondary: Color.fromARGB(255, 255, 255, 255),
   background: Color.fromARGB(255, 32, 38, 56),
   onBackground: Color.fromARGB(255, 150, 150, 200),
@@ -15,6 +13,8 @@ ColorScheme darkColorScheme = const ColorScheme(
   onSurface: Color.fromARGB(255, 255, 255, 255),
   error: Color.fromARGB(255, 215, 71, 71),
   onError: Color.fromARGB(255, 255, 255, 255),
+  primaryVariant: Color.fromARGB(255, 13, 170, 186),
+  secondaryVariant: Color.fromARGB(255, 196, 100, 189),
 );
 
 final DarkTheme = ThemeData(
@@ -153,10 +153,8 @@ final MainTheme = ThemeData(
 ColorScheme mainColorScheme = const ColorScheme(
   brightness: Brightness.light,
   primary: Color.fromARGB(255, 76, 175, 80),
-  primaryVariant: Color.fromARGB(255, 76, 175, 80),
   onPrimary: Color.fromARGB(255, 255, 255, 255),
   secondary: Color.fromARGB(255, 81, 211, 86),
-  secondaryVariant: Color.fromARGB(255, 100, 211, 100),
   onSecondary: Color.fromARGB(255, 255, 255, 255),
   background: Color.fromARGB(255, 255, 255, 255),
   onBackground: Color.fromARGB(255, 0, 0, 0),
@@ -164,4 +162,6 @@ ColorScheme mainColorScheme = const ColorScheme(
   onSurface: Color.fromARGB(255, 255, 255, 255),
   error: Color.fromARGB(255, 255, 82, 82),
   onError: Color.fromARGB(255, 255, 255, 255),
+  primaryVariant: Color.fromARGB(255, 76, 175, 80),
+  secondaryVariant: Color.fromARGB(255, 100, 211, 100),
 );
